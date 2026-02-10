@@ -2,7 +2,7 @@
    AMBIORA - ADMIN PANEL LOGIC
    ============================================ */
 
-import { API_BASE_URL } from '../config/api.js';
+import { getApiUrl } from '../config/api.js';
 
 let adminToken = localStorage.getItem('admin_token');
 
@@ -23,7 +23,7 @@ function initLogin() {
         const password = document.getElementById('admin-password').value;
 
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/login`, {
+            const response = await fetch(getApiUrl('admin/login'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password })
@@ -64,7 +64,7 @@ function setupLogout() {
 
 async function fetchAndRenderData() {
     try {
-        const response = await fetch(`${API_BASE_URL}/admin/registrations`, {
+        const response = await fetch(getApiUrl('admin/registrations'), {
             headers: { 'Authorization': `Bearer ${adminToken}` }
         });
 
