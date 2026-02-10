@@ -133,7 +133,7 @@ async function createOrder(cart, user) {
             customer_phone: user.phone || '9999999999'
         },
         order_meta: {
-            return_url: `${API_CONFIG.BASE_URL}/checkout.html?order_id=${orderId}&status={order_status}`
+            return_url: `${window.location.origin}/checkout.html?order_id=${orderId}&status={order_status}`
         },
         order_note: `Ambiora Tech Fest - ${cart.map(i => i.name).join(', ')}`,
         order_items: cart.map(item => ({
