@@ -144,7 +144,7 @@
 .event-card-inner {
     position: relative;
     height: 100%;
-    min-height: 420px;
+    min-height: 520px;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     /* Start flipped to show back (logo) by default */
@@ -455,11 +455,13 @@
     line-height: 1.5;
     flex-grow: 0;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
+    height: 3em;
+    /* Fixed height for 2 lines to keep layout consistent */
 }
 
 /* Highlights Tags */
@@ -467,7 +469,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
+    min-height: 54px;
+    /* Space for at least two rows of tags */
 }
 
 .highlight-tag {
@@ -533,6 +537,7 @@
     display: flex;
     gap: var(--space-2);
     margin-top: auto;
+    padding-top: var(--space-2);
 }
 
 .event-card-details-btn {
