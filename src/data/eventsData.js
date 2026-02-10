@@ -7,7 +7,7 @@ export const eventsData = [
         description: 'An intense 24-hour hackathon where teams compete to build innovative solutions. Bring your creativity and coding skills! Includes enrolment kit, winner certificates, and midnight high tea & snacks.',
         duration: '24 Hours',
         date: 'Feb 27 - March 1',
-        price: 600,
+        price: 2,
         priceNote: 'Per Team',
         teamSize: '2-4 members',
         venue: 'Library Area',
