@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/src/components/VideoBackground.css">
     <link rel="stylesheet" href="/src/components/SimpleGrid.css">
     <link rel="stylesheet" href="/src/components/Cart.css">
+    <link rel="stylesheet" href="/src/styles/pages/team.css">
     <link rel="stylesheet" href="/src/styles/pages/contact.css">
 </head>
 
@@ -120,71 +121,41 @@
     <section class="contact-section section">
         <div class="container">
             <div class="contact-grid">
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper">
+                <!-- Faculty Section -->
+                <div class="contact-form-wrapper" style="background: transparent; border: none; padding: 0;">
                     <div class="form-header">
-                        <h2 class="form-title">Send us a message</h2>
-                        <p class="form-subtitle">We'll get back to you within 24 hours.</p>
+                        <h2 class="form-title">Our Faculties</h2>
+                        <p class="form-subtitle">Guiding minds behind Ambiora Tech Fest 2026.</p>
                     </div>
 
-                    <form class="contact-form" id="contact-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John"
-                                    required>
+                    <div class="team-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <article class="team-member">
+                            <div class="team-member-image">
+                                <div class="image-container">
+                                    <img src="/assets/pics/Dr-Suyog-Pande-scaled.jpg" alt="Dr. Suyog Pandey"
+                                        style="width:100%; height:100%; object-fit:cover;">
+                                    <div class="pixelate-overlay"></div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Doe"
-                                    required>
+                            <div class="team-member-info">
+                                <h3 class="team-member-name">Dr. Suyog Pandey</h3>
+                                <p class="team-member-role">Faculty</p>
                             </div>
-                        </div>
+                        </article>
 
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-input"
-                                placeholder="john@example.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject" class="form-label">Subject</label>
-                            <select id="subject" name="subject" class="form-input form-select" required>
-                                <option value="">Select a subject</option>
-                                <option value="registration">Event Registration</option>
-                                <option value="sponsorship">Sponsorship Inquiry</option>
-                                <option value="partnership">Partnership</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" name="message" class="form-input form-textarea"
-                                placeholder="Tell us about your inquiry..." rows="5" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-primary btn-submit">
-                            <span>Send Message</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
-                    </form>
-
-                    <div class="form-success" id="form-success">
-                        <div class="success-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                                <polyline points="22 4 12 14.01 9 11.01" />
-                            </svg>
-                        </div>
-                        <h3 class="success-title">Message Sent!</h3>
-                        <p class="success-text">Thank you for reaching out. We'll get back to you soon.</p>
+                        <article class="team-member">
+                            <div class="team-member-image">
+                                <div class="image-container">
+                                    <img src="/assets/pics/Dr-Atul-Dusane-scaled.jpg" alt="Dr. Atul Dushane"
+                                        style="width:100%; height:100%; object-fit:cover;">
+                                    <div class="pixelate-overlay"></div>
+                                </div>
+                            </div>
+                            <div class="team-member-info">
+                                <h3 class="team-member-name">Dr. Atul Dushane</h3>
+                                <p class="team-member-role">Faculty</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
 
