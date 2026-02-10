@@ -1,0 +1,431 @@
+/* ============================================
+   AMBIORA - MY EVENTS PAGE STYLES
+   ============================================ */
+
+.my-events-page {
+    min-height: 100vh;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.page-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+/* Success Banner */
+.success-banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    border-radius: 16px;
+    color: #00d4aa;
+    margin-bottom: 3rem;
+    animation: slideInDown 0.5s ease-out;
+    transition: opacity 0.3s ease;
+}
+
+.success-banner svg {
+    flex-shrink: 0;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tickets Grid */
+.tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* Ticket Card */
+.ticket-card {
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.ticket-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00d4aa, #00a3ff);
+}
+
+.ticket-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 170, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 212, 170, 0.15);
+}
+
+/* Ticket Header */
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.ticket-id-badge {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #00d4aa, #00a3ff);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+.ticket-category {
+    padding: 0.375rem 0.875rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: capitalize;
+}
+
+/* Ticket Content */
+.ticket-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.ticket-event-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.ticket-host,
+.ticket-user,
+.ticket-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ticket-host svg,
+.ticket-user svg,
+.ticket-date svg {
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+/* QR Code */
+.ticket-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.qr-container {
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-qr-canvas {
+    display: block;
+    border-radius: 8px;
+}
+
+.qr-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+/* Ticket Footer */
+.ticket-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ticket-download-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ticket-download-btn:hover {
+    background: rgba(0, 212, 170, 0.1);
+    border-color: #00d4aa;
+    color: #00d4aa;
+}
+
+.ticket-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #00d4aa;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.empty-state svg {
+    margin-bottom: 2rem;
+}
+
+.empty-state h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2rem;
+    max-width: 400px;
+}
+
+.empty-state .btn-primary {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #00d4aa, #00a3ff);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.empty-state .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 212, 170, 0.3);
+}
+
+/* Page Notification */
+.page-notification {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+}
+
+.page-notification--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-notification--success {
+    border-color: rgba(0, 212, 170, 0.3);
+    background: rgba(0, 212, 170, 0.1);
+}
+
+.page-notification--success .notification-icon {
+    color: #00d4aa;
+}
+
+.page-notification--error {
+    border-color: rgba(255, 71, 87, 0.3);
+    background: rgba(255, 71, 87, 0.1);
+}
+
+.page-notification--error .notification-icon {
+    color: #ff4757;
+}
+
+.notification-icon {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.notification-text {
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .tickets-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .my-events-page {
+        padding: 5rem 1.5rem 3rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .ticket-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .ticket-qr {
+        order: -1;
+    }
+
+    .qr-container {
+        padding: 0.75rem;
+    }
+
+    .ticket-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .ticket-download-btn {
+        justify-content: center;
+    }
+
+    .ticket-price {
+        text-align: center;
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .nav-header,
+    .nav-logo,
+    .success-banner,
+    .ticket-download-btn {
+        display: none !important;
+    }
+
+    .ticket-card {
+        page-break-inside: avoid;
+        border: 2px solid #000;
+        background: #fff;
+    }
+
+    .ticket-event-name,
+    .ticket-host,
+    .ticket-user,
+    .ticket-date {
+        color: #000;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for multiple tickets */
+.ticket-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.ticket-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.ticket-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.ticket-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.ticket-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.ticket-card:nth-child(6) {
+    animation-delay: 0.6s;
+}

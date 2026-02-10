@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ambiora | Tech Fest 2026</title>
+  <meta name="description"
+    content="Ambiora - The ultimate tech fest experience. Join us for innovation, creativity, and technology at its finest.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+  <link rel="stylesheet" href="/src/components/navigation.css">
+  <link rel="stylesheet" href="/src/components/SimpleGrid.css">
+  <link rel="stylesheet" href="/src/components/VideoBackground.css">
+  <link rel="stylesheet" href="/src/components/Cart.css">
+  <link rel="stylesheet" href="/src/styles/pages/home.css">
+</head>
+
+<body>
+  <!-- Video Background (Home Page Only) -->
+  <div class="video-background">
+    <video autoplay loop muted playsinline>
+      <source src="/assets/floating-lines-1770153875947.webm" type="video/webm">
+    </video>
+  </div>
+
+  <!-- Simple Grid Background -->
+  <div id="simple-grid"></div>
+
+  <!-- Logo (fixed at top-left) -->
+  <a href="/" class="nav-logo">
+    <img src="/assets/Topbarlogo.png" alt="Ambiora" class="nav-logo-img">
+  </a>
+
+  <!-- Navigation Sidebar -->
+  <header class="nav-header">
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link active" data-tooltip="Home">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </a></li>
+        <li><a href="/events.html" class="nav-link" data-tooltip="Events">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </a></li>
+        <li><a href="/about.html" class="nav-link" data-tooltip="About Us">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </a></li>
+        <li><a href="/contact.html" class="nav-link" data-tooltip="Contact">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </a></li>
+        <!-- Profile Link -->
+        <li><a href="#profile" class="nav-link" data-tooltip="Profile">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="nav-menu">
+    <ul class="nav-menu-links">
+      <li><a href="/" class="nav-menu-link">Home</a></li>
+      <li><a href="/events.html" class="nav-menu-link">Events</a></li>
+      <li><a href="/about.html" class="nav-menu-link">About Us</a></li>
+      <li><a href="/contact.html" class="nav-menu-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero section">
+    <!-- Dimmed Logo Background -->
+    <img src="/assets/LOGO.png" alt="" class="hero-bg-logo" aria-hidden="true">
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-label">
+          <span class="hero-label-text">Tech Fest 2026</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-title-line">Hello.</span>
+          <span class="hero-title-line">We're what you've</span>
+          <span class="hero-title-line">been looking for.</span>
+          <span class="hero-title-line">Who are we?</span>
+          <span class="hero-title-line hero-title-accent">We are Ambiora.</span>
+        </h1>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-number">01 /</span>
+            <span class="hero-stat-label text-accent">Innovation</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-number">02 /</span>
+            <span class="hero-stat-label text-accent">Creativity</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-number">03 /</span>
+            <span class="hero-stat-label text-accent">Technology</span>
+          </div>
+        </div>
+
+        <div class="hero-scroll">
+          <span class="hero-scroll-text">Scroll to Explore</span>
+          <div class="hero-scroll-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-content" data-animate="slide">
+        <div class="about-header">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">
+            <span class="text-muted">A world wide team</span> of
+            <br>experienced and skilled
+            <br>professionals
+          </h2>
+        </div>
+
+        <div class="about-description">
+          <p class="about-text">
+            who bring a <em>wide range</em> of
+            <br>talents and perspectives
+            <br>to a project.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-legacy" data-animate="fade">
+        <div class="legacy-card">
+          <div class="legacy-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <h3 class="legacy-title">Our Legacy</h3>
+          <p class="legacy-text">
+            Ambiora has been at the forefront of technological innovation since its inception.
+            Our tech fest brings together the brightest minds, cutting-edge technologies, and
+            groundbreaking ideas that shape the future.
+          </p>
+        </div>
+
+        <div class="legacy-card">
+          <div class="legacy-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="10 8 16 12 10 16 10 8" />
+            </svg>
+          </div>
+          <h3 class="legacy-title">What We Do</h3>
+          <p class="legacy-text">
+            From hackathons and coding competitions to workshops and keynote speeches,
+            we create immersive experiences that inspire, educate, and connect tech
+            enthusiasts from around the world.
+          </p>
+        </div>
+
+        <div class="legacy-card">
+          <div class="legacy-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <h3 class="legacy-title">Join the Movement</h3>
+          <p class="legacy-text">
+            Be part of a community that's building tomorrow. Whether you're a developer,
+            designer, entrepreneur, or tech enthusiast, Ambiora welcomes you to explore,
+            create, and innovate.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Preview Section -->
+  <section class="events-preview section" id="events">
+    <div class="container">
+      <div class="events-header" data-animate="slide">
+        <span class="section-label">Featured Events</span>
+        <h2 class="section-title">
+          Discover what's
+          <br><span class="text-accent">waiting for you</span>
+        </h2>
+      </div>
+
+      <div class="events-grid" data-animate="stagger">
+        <article class="event-preview-card">
+          <div class="event-preview-number">01</div>
+          <h3 class="event-preview-title">Hackathon</h3>
+          <p class="event-preview-desc">48 hours of non-stop coding, innovation, and creativity.</p>
+          <a href="/events.html" class="event-preview-link">Learn more →</a>
+        </article>
+
+        <article class="event-preview-card">
+          <div class="event-preview-number">02</div>
+          <h3 class="event-preview-title">Tech Talks</h3>
+          <p class="event-preview-desc">Industry leaders share insights on emerging technologies.</p>
+          <a href="/events.html" class="event-preview-link">Learn more →</a>
+        </article>
+
+        <article class="event-preview-card">
+          <div class="event-preview-number">03</div>
+          <h3 class="event-preview-title">Workshops</h3>
+          <p class="event-preview-desc">Hands-on sessions to build real-world skills.</p>
+          <a href="/events.html" class="event-preview-link">Learn more →</a>
+        </article>
+
+        <article class="event-preview-card">
+          <div class="event-preview-number">04</div>
+          <h3 class="event-preview-title">Networking</h3>
+          <p class="event-preview-desc">Connect with fellow innovators and industry professionals.</p>
+          <a href="/events.html" class="event-preview-link">Learn more →</a>
+        </article>
+      </div>
+
+      <div class="events-cta" data-animate="fade">
+        <a href="/events.html" class="btn-primary">View All Events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta section">
+    <div class="container">
+      <div class="cta-content" data-animate="slide">
+        <h2 class="cta-title">
+          Ready to be part of
+          <br><span class="text-gradient">something extraordinary?</span>
+        </h2>
+        <p class="cta-text">
+          Join thousands of tech enthusiasts at Ambiora 2026.
+          Registration is now open.
+        </p>
+        <div class="cta-buttons">
+          <a href="/events.html" class="btn-primary">Register Now</a>
+          <a href="/about.html" class="btn-secondary">Meet the Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="/assets/Topbarlogo.png" alt="Ambiora" class="nav-logo-img">
+          </a>
+          <p class="footer-tagline">Building tomorrow, together.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-list">
+              <li><a href="/">Home</a></li>
+              <li><a href="/events.html">Events</a></li>
+              <li><a href="/about.html">About Us</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 class="footer-heading">Connect</h4>
+            <ul class="footer-list">
+              <li><a href="#">Twitter / X</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Discord</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 class="footer-heading">Contact</h4>
+            <ul class="footer-list">
+              <li><a href="mailto:hello@ambiora.tech">hello@ambiora.tech</a></li>
+              <li>Tech Campus</li>
+              <li>Innovation Hub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Ambiora Tech Fest. All rights reserved.</p>
+        <p class="footer-credit">Built with ❤️ by the Ambiora Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/pages/home.js"></script>
+  <script type="module">
+    // Visual effects with grid, scroll animations, and animated logo
+    import { initSimpleGrid } from '/src/components/SimpleGrid.js';
+    import { initHeavyScroll } from '/src/components/HeavyScroll.js';
+    import { initCursorEffects } from '/src/components/CursorEffects.js';
+    import { initAnimatedLogo } from '/src/components/AnimatedLogo.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Simple screen-fitting grid background
+      initSimpleGrid('simple-grid', {
+        columns: 12,
+        rows: 8,
+        color: '#00d4aa',
+        opacity: 0.06,
+        glowOpacity: 0.12
+      });
+
+      // Cascading scroll animations
+      initHeavyScroll({
+        cascadeDelay: 100,
+        duration: 1200,
+        easing: 'easeOutExpo'
+      });
+
+      // Animated logo with ripple and scroll-to-navbar
+      initAnimatedLogo({
+        logoSelector: '.hero-bg-logo',
+        scrollThreshold: 400,
+        rippleInterval: 3000
+      });
+
+      // Enhanced cursor effects
+      initCursorEffects({
+        trailEnabled: true,
+        trailLength: 6,
+        trailColor: '#00d4aa',
+        magneticEnabled: true,
+        magneticStrength: 0.25,
+        rippleEnabled: true
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+node_modules
+.env
+.env.local
+.git
+*.log
+test-mongodb.js
+MONGODB_TROUBLESHOOTING.md
+README.md
+.DS_Store

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Ambiora Tech Fest 2026</title>
+    <meta name="description"
+        content="Explore all events at Ambiora Tech Fest 2026 - Hackathons, Tech Talks, Workshops, and more.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/styles/global.css">
+    <link rel="stylesheet" href="/src/components/navigation.css">
+    <link rel="stylesheet" href="/src/components/VideoBackground.css">
+    <link rel="stylesheet" href="/src/components/SimpleGrid.css">
+    <link rel="stylesheet" href="/src/components/Cart.css">
+    <link rel="stylesheet" href="/src/styles/pages/events.css">
+</head>
+
+<body>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="/assets/floating-lines-1770153875947.webm" type="video/webm">
+        </video>
+    </div>
+
+    <!-- Simple Grid Background -->
+    <div id="simple-grid"></div>
+
+    <!-- Logo (fixed at top-left) -->
+    <a href="/" class="nav-logo">
+        <img src="/assets/Topbarlogo.png" alt="Ambiora" class="nav-logo-img">
+    </a>
+
+    <!-- Navigation Sidebar -->
+    <header class="nav-header">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link" data-tooltip="Home">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </a></li>
+                <li><a href="/events.html" class="nav-link active" data-tooltip="Events">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </a></li>
+                <li><a href="/about.html" class="nav-link" data-tooltip="About Us">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </a></li>
+                <li><a href="/contact.html" class="nav-link" data-tooltip="Contact">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </a></li>
+                <!-- Profile Link -->
+                <li><a href="#profile" class="nav-link" data-tooltip="Profile">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="nav-menu">
+        <ul class="nav-menu-links">
+            <li><a href="/" class="nav-menu-link">Home</a></li>
+            <li><a href="/events.html" class="nav-menu-link">Events</a></li>
+            <li><a href="/about.html" class="nav-menu-link">About Us</a></li>
+            <li><a href="/contact.html" class="nav-menu-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header section">
+        <div class="container">
+            <div class="page-header-content">
+                <span class="page-label">Our Events</span>
+                <h1 class="page-title">
+                    <span class="page-title-line">Discover</span>
+                    <span class="page-title-line text-accent">amazing events</span>
+                </h1>
+                <p class="page-subtitle">
+                    From hackathons to workshops, there's something for everyone.
+                    Hover over the cards to explore.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="events-section section">
+        <div class="container">
+            <div class="events-filter">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="competition">Competitions</button>
+                <button class="filter-btn" data-filter="workshop">Workshops</button>
+                <button class="filter-btn" data-filter="gaming">Gaming</button>
+            </div>
+
+            <div class="events-grid">
+                <!-- Event Card 1 -->
+                <article class="event-card" data-category="competition">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Competition</div>
+                            <h3 class="event-card-title">Code Quest</h3>
+                            <p class="event-card-desc">
+                                A 48-hour hackathon where teams compete to build innovative solutions
+                                for real-world problems. Prizes worth ₹1,00,000!
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 15-17
+                                </span>
+                                <span class="event-card-time">48 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 2 -->
+                <article class="event-card" data-category="workshop">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Workshop</div>
+                            <h3 class="event-card-title">AI/ML Masterclass</h3>
+                            <p class="event-card-desc">
+                                Hands-on workshop covering machine learning fundamentals,
+                                neural networks, and building your first AI model.
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 16
+                                </span>
+                                <span class="event-card-time">4 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 3 -->
+                <article class="event-card" data-category="talk">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Tech Talk</div>
+                            <h3 class="event-card-title">Future of Web3</h3>
+                            <p class="event-card-desc">
+                                Industry leaders discuss blockchain technology, decentralized apps,
+                                and the future of the internet.
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 15
+                                </span>
+                                <span class="event-card-time">2 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 4 -->
+                <article class="event-card" data-category="competition">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Competition</div>
+                            <h3 class="event-card-title">UI/UX Challenge</h3>
+                            <p class="event-card-desc">
+                                Design the next big thing! Create stunning user interfaces and
+                                experiences for a chance to win exciting prizes.
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 16
+                                </span>
+                                <span class="event-card-time">6 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 5 -->
+                <article class="event-card" data-category="workshop">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Workshop</div>
+                            <h3 class="event-card-title">Cloud Computing</h3>
+                            <p class="event-card-desc">
+                                Learn to deploy and scale applications on AWS, Google Cloud,
+                                and Azure with hands-on exercises.
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 17
+                                </span>
+                                <span class="event-card-time">3 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 6 -->
+                <article class="event-card" data-category="talk">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Tech Talk</div>
+                            <h3 class="event-card-title">Startup Stories</h3>
+                            <p class="event-card-desc">
+                                Hear from successful founders about their journey, failures,
+                                and the lessons that shaped their success.
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 17
+                                </span>
+                                <span class="event-card-time">2 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 7 -->
+                <article class="event-card" data-category="competition">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Competition</div>
+                            <h3 class="event-card-title">Capture The Flag</h3>
+                            <p class="event-card-desc">
+                                Test your cybersecurity skills in this intense CTF competition.
+                                Find vulnerabilities and capture flags!
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 16
+                                </span>
+                                <span class="event-card-time">8 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 8 -->
+                <article class="event-card" data-category="workshop">
+                    <div class="event-card-inner">
+                        <div class="event-card-front">
+                            <div class="event-card-category">Workshop</div>
+                            <h3 class="event-card-title">Game Development</h3>
+                            <p class="event-card-desc">
+                                Build your first game using Unity! Learn game physics,
+                                scripting, and level design basics.
+                            </p>
+                            <div class="event-card-meta">
+                                <span class="event-card-date">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    March 15
+                                </span>
+                                <span class="event-card-time">5 Hours</span>
+                            </div>
+                            <span class="event-card-flip-hint">Hover to flip →</span>
+                        </div>
+                        <div class="event-card-back">
+                            <div class="event-card-logo">
+                                <span class="logo-icon">A</span>
+                                <span class="logo-text">AMBIORA</span>
+                            </div>
+                            <div class="event-card-back-pattern"></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration CTA -->
+    <section class="register-section section" id="register">
+        <div class="container">
+            <div class="register-content">
+                <h2 class="register-title">
+                    Ready to <span class="text-gradient">participate?</span>
+                </h2>
+                <p class="register-text">
+                    Register now to secure your spot at Ambiora Tech Fest 2026.
+                    Early bird discounts available!
+                </p>
+                <a href="#register" class="btn-primary btn-lg">Register Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="nav-logo">
+                        <img src="/assets/Topbarlogo.png" alt="Ambiora" class="nav-logo-img">
+                    </a>
+                    <p class="footer-tagline">Building tomorrow, together.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Navigation</h4>
+                        <ul class="footer-list">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/events.html">Events</a></li>
+                            <li><a href="/about.html">About Us</a></li>
+                            <li><a href="/contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Connect</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Twitter / X</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Discord</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Ambiora Tech Fest. All rights reserved.</p>
+                <p class="footer-credit">Built with ❤️ by the Ambiora Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/pages/events.js"></script>
+    <script type="module">
+        import { initSimpleGrid } from '/src/components/SimpleGrid.js';
+        import { initHeavyScroll } from '/src/components/HeavyScroll.js';
+        import { initCursorEffects } from '/src/components/CursorEffects.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initSimpleGrid('simple-grid', { columns: 12, rows: 8, color: '#00d4aa', opacity: 0.06, glowOpacity: 0.12 });
+            initHeavyScroll({ cascadeDelay: 80, duration: 1000, easing: 'easeOutExpo' });
+            initCursorEffects({ trailEnabled: true, magneticEnabled: true });
+        });
+    </script>
+</body>
+
+</html>

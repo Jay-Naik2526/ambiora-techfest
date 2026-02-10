@@ -1,0 +1,36 @@
+/* Simple Grid Styles - Screen-fitting dimmed grid */
+
+#simple-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.simple-grid-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure content stays above grid */
+.nav-header,
+.hero,
+main,
+section,
+footer,
+.page-header,
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Scroll animation states */
+.animated {
+    opacity: 1 !important;
+    transform: none !important;
+}

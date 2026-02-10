@@ -1,0 +1,32 @@
+/* Three.js 3D Background Styles */
+
+#three-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#three-background canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Ensure content is above the 3D background */
+.hero,
+.nav-header,
+main,
+section,
+footer,
+.page-header {
+    position: relative;
+    z-index: 1;
+}

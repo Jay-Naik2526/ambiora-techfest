@@ -1,0 +1,51 @@
+/* Video Background Styles - Darker overlay */
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.55;
+    /* Brighter video */
+}
+
+/* Dark overlay - reduced for more brightness */
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    /* 35% dark overlay - brighter */
+    pointer-events: none;
+}
+
+/* Content layering */
+.nav-header,
+.hero,
+main,
+section,
+footer,
+.page-header,
+.container {
+    position: relative;
+    z-index: 2;
+}

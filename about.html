@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Ambiora Tech Fest 2026</title>
+    <meta name="description"
+        content="Meet the team behind Ambiora Tech Fest 2026 - Our tech heads, organizers, and the passionate people making it happen.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/styles/global.css">
+    <link rel="stylesheet" href="/src/components/navigation.css">
+    <link rel="stylesheet" href="/src/components/VideoBackground.css">
+    <link rel="stylesheet" href="/src/components/SimpleGrid.css">
+    <link rel="stylesheet" href="/src/components/Cart.css">
+    <link rel="stylesheet" href="/src/styles/pages/team.css">
+</head>
+
+<body>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="/assets/floating-lines-1770153875947.webm" type="video/webm">
+        </video>
+    </div>
+
+    <!-- Simple Grid Background -->
+    <div id="simple-grid"></div>
+
+    <!-- Logo (fixed at top-left) -->
+    <a href="/" class="nav-logo">
+        <img src="/assets/Topbarlogo.png" alt="Ambiora" class="nav-logo-img">
+    </a>
+
+    <!-- Navigation Sidebar -->
+    <header class="nav-header">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link" data-tooltip="Home">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </a></li>
+                <li><a href="/events.html" class="nav-link" data-tooltip="Events">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </a></li>
+                <li><a href="/about.html" class="nav-link active" data-tooltip="About Us">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </a></li>
+                <li><a href="/contact.html" class="nav-link" data-tooltip="Contact">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </a></li>
+                <!-- Profile Link -->
+                <li><a href="#profile" class="nav-link" data-tooltip="Profile">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="nav-menu">
+        <ul class="nav-menu-links">
+            <li><a href="/" class="nav-menu-link">Home</a></li>
+            <li><a href="/events.html" class="nav-menu-link">Events</a></li>
+            <li><a href="/about.html" class="nav-menu-link">About Us</a></li>
+            <li><a href="/contact.html" class="nav-menu-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header section">
+        <div class="container">
+            <div class="page-header-content">
+                <span class="page-label">About Us</span>
+                <h1 class="page-title">
+                    <span class="page-title-line"><em>A world wide team</em> of</span>
+                    <span class="page-title-line">experienced and skilled</span>
+                    <span class="page-title-line">professionals</span>
+                </h1>
+                <p class="page-subtitle">
+                    who bring a <em>wide range</em> of talents and perspectives to every project.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section section">
+        <div class="container">
+            <div class="team-header">
+                <span class="section-label">The Team</span>
+                <h2 class="section-title">Meet Our Tech Heads</h2>
+                <p class="section-subtitle">
+                    Hover over the images to reveal the faces behind Ambiora
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Miss. Gauri Mathur.jpg" alt="Miss. Gauri Mathur"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[001]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Miss. Gauri Mathur</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Miss. Ishita Tripathi.jpg" alt="Miss. Ishita Tripathi"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[002]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Miss. Ishita Tripathi</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Miss. Lehar Nimodiya.jpg" alt="Miss. Lehar Nimodiya"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[003]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Miss. Lehar Nimodiya</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Miss. Rutu Vekariya.jpg" alt="Miss. Rutu Vekariya"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[004]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Miss. Rutu Vekariya</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Miss. Taniya Shah.jpg" alt="Miss. Taniya Shah"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[005]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Miss. Taniya Shah</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Miss. Vedika Jawaria.jpg" alt="Miss. Vedika Jawaria"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[006]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Miss. Vedika Jawaria</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Aarav Rai Mathur.jpg" alt="Mr. Aarav Rai Mathur"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[007]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Aarav Rai Mathur</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Aditya Wagh.jpg" alt="Mr. Aditya Wagh"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[008]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Aditya Wagh</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Aryan Chandani.jpg" alt="Mr. Aryan Chandani"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[009]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Aryan Chandani</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Harshvardhan Karadbhajre.jpg" alt="Mr. Harshvardhan Karadbhajre"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[010]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Harshvardhan Karadbhajre</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Jay Patel.jpg" alt="Mr. Jay Patel"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[011]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Jay Patel</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Krish Prajapati.jpg" alt="Mr. Krish Prajapati"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[012]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Krish Prajapati</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Krish Umredkar.jpg" alt="Mr. Krish Umredkar"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[013]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Krish Umredkar</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Lavesh Patil.jpg" alt="Mr. Lavesh Patil"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[014]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Lavesh Patil</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Parth Saxena.jpg" alt="Mr. Parth Saxena"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[015]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Parth Saxena</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Rohan Painter.jpg" alt="Mr. Rohan Painter"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[016]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Rohan Painter</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Sarthak Rathi.jpg" alt="Mr. Sarthak Rathi"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[017]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Sarthak Rathi</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Shrivin Nave.jpg" alt="Mr. Shrivin Nave"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[018]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Shrivin Nave</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Srikar Molahalli.jpg" alt="Mr. Srikar Molahalli"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[019]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Srikar Molahalli</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Vaidik Nandawana.jpg" alt="Mr. Vaidik Nandawana"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[020]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Vaidik Nandawana</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <div class="image-container">
+                            <img src="/assets/pics/Mr. Vihan Joshi.jpg" alt="Mr. Vihan Joshi"
+                                style="width:100%; height:100%; object-fit:cover;">
+                            <div class="pixelate-overlay"></div>
+                        </div>
+                        <div class="member-number">[[021]]</div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mr. Vihan Joshi</h3>
+                        <p class="team-member-role">Team Member</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Description -->
+    <section class="about-details section">
+        <div class="container">
+            <div class="about-details-content">
+                <div class="about-details-left">
+                    <h2 class="about-details-title">
+                        Our <span class="text-accent">Mission</span>
+                    </h2>
+                    <p class="about-details-text">
+                        As a result of our diverse experience, we are able to think creatively
+                        and find new solutions to problems, providing participants with memorable,
+                        purpose-driven experiences that cut through the noise and connect where
+                        it matters.
+                    </p>
+                </div>
+
+                <div class="about-details-right">
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <span class="about-stat-number">5+</span>
+                            <span class="about-stat-label">Years of Excellence</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="about-stat-number">50+</span>
+                            <span class="about-stat-label">Events Organized</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="about-stat-number">10K+</span>
+                            <span class="about-stat-label">Participants</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="about-stat-number">100+</span>
+                            <span class="about-stat-label">Industry Partners</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section section">
+        <div class="container">
+            <div class="values-header">
+                <span class="section-label">Our Values</span>
+                <h2 class="section-title">What Drives Us</h2>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Innovation</h3>
+                    <p class="value-text">
+                        Pushing boundaries and embracing new technologies to create
+                        groundbreaking experiences.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Community</h3>
+                    <p class="value-text">
+                        Building connections and fostering collaboration among
+                        tech enthusiasts worldwide.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Excellence</h3>
+                    <p class="value-text">
+                        Striving for perfection in every event, workshop, and
+                        interaction we deliver.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Integrity</h3>
+                    <p class="value-text">
+                        Operating with transparency and honesty in everything
+                        we do.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="nav-logo">
+                        <img src="/assets/Topbarlogo.png" alt="Ambiora" class="nav-logo-img">
+                    </a>
+                    <p class="footer-tagline">Building tomorrow, together.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Navigation</h4>
+                        <ul class="footer-list">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/events.html">Events</a></li>
+                            <li><a href="/about.html">About Us</a></li>
+                            <li><a href="/contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Connect</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Twitter / X</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Discord</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Ambiora Tech Fest. All rights reserved.</p>
+                <p class="footer-credit">Built with ❤️ by the Ambiora Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/pages/team.js"></script>
+    <script type="module">
+        import { initSimpleGrid } from '/src/components/SimpleGrid.js';
+        import { initHeavyScroll } from '/src/components/HeavyScroll.js';
+        import { initCursorEffects } from '/src/components/CursorEffects.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initSimpleGrid('simple-grid', { columns: 12, rows: 8, color: '#00d4aa', opacity: 0.06, glowOpacity: 0.12 });
+            initHeavyScroll({ cascadeDelay: 80, duration: 1000, easing: 'easeOutExpo' });
+            initCursorEffects({ trailEnabled: true, magneticEnabled: true });
+        });
+    </script>
+</body>
+
+</html>

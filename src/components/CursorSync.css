@@ -1,0 +1,128 @@
+/* Cursor Synchronization Styles */
+
+/* Container for cursor sync indicator */
+#cursor-sync-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Live user indicator */
+.cursor-sync-indicator {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-family: var(--font-primary, 'Inter', sans-serif);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+.cursor-sync-indicator.has-others {
+    border-color: var(--color-accent, #00d4aa);
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.2);
+}
+
+.cursor-sync-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-accent, #00d4aa);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+.cursor-sync-count {
+    font-weight: 600;
+    color: var(--color-accent, #00d4aa);
+}
+
+/* Remote cursor styling */
+.cursor-remote {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transform: translate(-2px, -2px);
+    transition: opacity 0.3s ease;
+}
+
+.cursor-remote.active {
+    opacity: 1;
+}
+
+.cursor-remote.leaving {
+    opacity: 0;
+    transform: translate(-2px, -2px) scale(0.5);
+}
+
+.cursor-remote-icon {
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.1s ease;
+}
+
+.cursor-remote-name {
+    position: absolute;
+    left: 18px;
+    top: 16px;
+    padding: 4px 8px;
+    font-family: var(--font-primary, 'Inter', sans-serif);
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    border-radius: 4px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* My cursor trail (more subtle) */
+.cursor-remote:first-of-type {
+    opacity: 0.5;
+}
+
+.cursor-remote:first-of-type .cursor-remote-name {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cursor-sync-indicator {
+        bottom: 16px;
+        right: 16px;
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    /* Hide remote cursors on touch devices */
+    .cursor-remote {
+        display: none;
+    }
+}
