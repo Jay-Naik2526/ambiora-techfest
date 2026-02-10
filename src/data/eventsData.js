@@ -95,6 +95,10 @@ export const eventsData = [
         prizes: { first: 4200, second: 3200, third: 900, consolation: 850 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'Valorant', 'Multi-venue'],
+        whatsapp: {
+            community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
+            group: 'https://chat.whatsapp.com/GYKLINuctygAGqV0BxpygZ?mode=gi_t'
+        },
         image: '/assets/val.jpeg'
     },
     {
@@ -111,6 +115,10 @@ export const eventsData = [
         prizes: { first: 4200, second: 3200, third: 900, consolation: 850 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'BGMI', 'Battle Royale'],
+        whatsapp: {
+            community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
+            group: 'https://chat.whatsapp.com/G7ivF4WK4s7AvTtrjiN1sW?mode=gi_t'
+        },
         image: '/assets/bgm.jpeg'
     },
     {
@@ -127,6 +135,10 @@ export const eventsData = [
         prizes: { first: 2000, second: 1500, third: 1000 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'F1 Racing', 'Solo'],
+        whatsapp: {
+            community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
+            group: 'https://chat.whatsapp.com/JSMGbrD6IBn2B4BsOm4Bit?mode=gi_t'
+        },
         image: '/assets/fon.jpeg'
     },
     {
@@ -143,6 +155,10 @@ export const eventsData = [
         prizes: { first: 2000, second: 1500, third: 1000 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'FIFA', 'Singles'],
+        whatsapp: {
+            community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
+            group: 'https://chat.whatsapp.com/JvBoX7lGVhQ04hyyeQEcR7?mode=gi_t'
+        },
         image: '/assets/f.jpeg'
     },
     {
@@ -159,6 +175,10 @@ export const eventsData = [
         prizes: { first: 2500, second: 1500, third: 1000 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'FIFA', 'Doubles'],
+        whatsapp: {
+            community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
+            group: 'https://chat.whatsapp.com/JvBoX7lGVhQ04hyyeQEcR7?mode=gi_t'
+        },
         image: '/assets/f.jpeg'
     },
     {
