@@ -3,6 +3,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
+  publicDir: 'public',
   build: {
     rollupOptions: {
       input: {
@@ -11,7 +12,12 @@ export default defineConfig({
         about: resolve(__dirname, 'about.html'),
         contact: resolve(__dirname, 'contact.html'),
         checkout: resolve(__dirname, 'checkout.html'),
-        myEvents: resolve(__dirname, 'my-events.html')
+        myEvents: resolve(__dirname, 'my-events.html'),
+        login: resolve(__dirname, 'login.html'),
+        signup: resolve(__dirname, 'signup.html'),
+        eventDetail: resolve(__dirname, 'event-detail.html'),
+        faculty: resolve(__dirname, 'faculty.html'),
+        team: resolve(__dirname, 'team_members.html')
       }
     }
   },
