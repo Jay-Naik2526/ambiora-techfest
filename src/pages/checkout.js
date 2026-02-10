@@ -125,7 +125,8 @@ function renderOrderTotal(cart) {
     if (!container) return;
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
-    const total = subtotal; // No additional fees for now
+    const convenienceFee = Math.round(subtotal * 0.025); // 2.5% fee
+    const total = subtotal + convenienceFee;
 
     container.innerHTML = `
         <div class="order-total-row">
@@ -133,8 +134,8 @@ function renderOrderTotal(cart) {
             <span class="order-total-value">₹${subtotal}</span>
         </div>
         <div class="order-total-row">
-            <span class="order-total-label">Platform Fee</span>
-            <span class="order-total-value">Free</span>
+            <span class="order-total-label">Convenience Fee (2.5%)</span>
+            <span class="order-total-value">₹${convenienceFee}</span>
         </div>
         <div class="order-total-row">
             <span class="order-total-label order-total-label--grand">Total</span>
@@ -146,7 +147,9 @@ function renderOrderTotal(cart) {
 // ─── PAY BUTTON ──────────────────────────────────────
 function bindPayButton(cart, user) {
     const payBtn = document.getElementById('pay-btn');
-    const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+    const convenienceFee = Math.round(subtotal * 0.025);
+    const total = subtotal + convenienceFee;
 
     if (payBtn) {
         // Update button text with dynamic total

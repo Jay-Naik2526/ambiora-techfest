@@ -16,7 +16,7 @@ export const eventsData = [
         judging: 'Industry/Academic Resource Person',
         note: 'External Teams: Breakfast, Lunch, and Dinner may be provided on request on a paid basis',
         highlights: ['₹25,000 Prize Pool', '24 Hours', 'Mentorship'],
-        image: '/assets/gdg.png'
+        image: '/assets/gd.jpeg'
     },
     {
         id: 'deep-fake-hisense',
@@ -31,7 +31,7 @@ export const eventsData = [
         venue: 'CC-II',
         prizes: { first: 4000, second: 3000, third: 2000 },
         highlights: ['AI/ML', 'Deep Learning', '₹9,000 Prize Pool'],
-        image: '/assets/deepf.png'
+        image: '/assets/deep.jpeg'
     },
     {
         id: 'code-relay',
@@ -46,7 +46,7 @@ export const eventsData = [
         venue: 'CC-II',
         prizes: { first: 2500, second: 1500, third: 1000 },
         highlights: ['Team Coding', 'Relay Format', '₹5,000 Prize Pool'],
-        image: '/assets/cdr.png'
+        image: '/assets/cd.jpeg'
     },
     {
         id: 'treasure-hunt',
@@ -63,7 +63,7 @@ export const eventsData = [
         includes: ['Winner Certificates'],
         note: 'Dedicated mobile app-based experience',
         highlights: ['₹3,000 Prize Pool', 'Mobile App', 'Adventure'],
-        image: '/assets/th.png'
+        image: '/assets/t.jpeg'
     },
     {
         id: 'tower-of-stability',
@@ -73,13 +73,13 @@ export const eventsData = [
         description: 'Test your engineering skills by building the tallest and most stable tower using limited materials. Balance height with structural integrity! Required stationery will be provided.',
         duration: '2 Hours 30 Minutes',
         date: 'Feb 27 - March 1',
-        price: 1,
+        price: 60,
         teamSize: '2-3 members',
         venue: 'Student Lounge',
         prizes: { first: 1000, second: 500 },
         includes: ['Required stationery provided'],
         highlights: ['Engineering', 'Creativity', 'Team Work'],
-        image: '/assets/atr.png'
+        image: '/assets/at.jpeg'
     },
     {
         id: 'tech-arena-valorant',
@@ -95,7 +95,7 @@ export const eventsData = [
         prizes: { first: 4200, second: 3200, third: 900, consolation: 850 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'Valorant', 'Multi-venue'],
-        image: '/assets/valo.png'
+        image: '/assets/val.jpeg'
     },
     {
         id: 'tech-arena-bgmi',
@@ -111,7 +111,7 @@ export const eventsData = [
         prizes: { first: 4200, second: 3200, third: 900, consolation: 850 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'BGMI', 'Battle Royale'],
-        image: '/assets/bgmi.png'
+        image: '/assets/bgm.jpeg'
     },
     {
         id: 'tech-arena-f1',
@@ -127,7 +127,7 @@ export const eventsData = [
         prizes: { first: 2000, second: 1500, third: 1000 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'F1 Racing', 'Solo'],
-        image: '/assets/fone.png'
+        image: '/assets/fon.jpeg'
     },
     {
         id: 'tech-arena-fifa-singles',
@@ -143,7 +143,7 @@ export const eventsData = [
         prizes: { first: 2000, second: 1500, third: 1000 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'FIFA', 'Singles'],
-        image: '/assets/fc.png'
+        image: '/assets/f.jpeg'
     },
     {
         id: 'tech-arena-fifa-doubles',
@@ -159,7 +159,7 @@ export const eventsData = [
         prizes: { first: 2500, second: 1500, third: 1000 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'FIFA', 'Doubles'],
-        image: '/assets/fc.png'
+        image: '/assets/f.jpeg'
     },
     {
         id: 'pitch-your-app',
@@ -174,7 +174,7 @@ export const eventsData = [
         venue: 'AIML Lab',
         prizes: { first: 2500, second: 1500, third: 1000 },
         highlights: ['Startup Pitch', 'Mentorship', '₹5,000 Prize Pool'],
-        image: '/assets/adc.png'
+        image: '/assets/ad.jpeg'
     },
     {
         id: 'robotics-robo-soccer',
@@ -192,7 +192,7 @@ export const eventsData = [
         workshopDuration: '5 Hours',
         eventDuration: '2 Hours',
         highlights: ['Hands-on Workshop', 'Kit Included', 'Competition'],
-        image: '/assets/avi.png'
+        image: '/assets/av.jpeg'
     },
     {
         id: 'drone-o-mania',
@@ -207,7 +207,7 @@ export const eventsData = [
         venue: 'Cricket Ground',
         prizes: { first: 13000, second: 10000, third: 7000 },
         highlights: ['₹30,000 Prize Pool', 'Drone Racing', 'Challenges'],
-        image: '/assets/uas.png'
+        image: '/assets/ua.jpeg'
     },
     {
         id: 'aspire-quest',
@@ -223,7 +223,7 @@ export const eventsData = [
         prizes: { special: 'Internship Opportunity' },
         note: 'Exclusive for Third Year Students',
         highlights: ['Internship Prize', 'Third Year Only', 'Multi-round'],
-        image: '/assets/aq.png'
+        image: '/assets/a.jpeg'
     },
     {
         id: 'cinetech',
@@ -238,6 +238,7 @@ export const eventsData = [
         venue: 'TBA',
         prizes: { first: 1000, second: 500 },
         highlights: ['Tech + Cinema', 'Creative', '₹1,500 Prize Pool'],
-        image: '/assets/raw.png'
+        image: '/assets/ra.jpeg'
     }
+
 ];

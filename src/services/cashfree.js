@@ -118,7 +118,9 @@ function generateOrderId() {
  */
 async function createOrder(cart, user) {
     const orderId = generateOrderId();
-    const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const convenienceFee = Math.round(subtotal * 0.025); // 2.5%
+    const totalAmount = subtotal + convenienceFee;
 
     const orderData = {
         order_id: orderId,

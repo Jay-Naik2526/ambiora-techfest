@@ -36,14 +36,14 @@ const categoryIcons = {
 
 // Host logo mapping for flip card back faces
 const hostLogos = {
-    'Google Developers Student Club': '/assets/gdg.png',
+    'Google Developers Student Club': '/assets/gd.jpeg',
     'Ambiora': '/assets/LOGO.png',
-    'Atrangi Club': '/assets/atr.png',
-    'ADC Club': '/assets/adc.png',
-    'Avinya Club': '/assets/avi.png',
+    'Atrangi Club': '/assets/at.jpeg',
+    'ADC Club': '/assets/ad.jpeg',
+    'Avinya Club': '/assets/av.jpeg',
     'Coding Club': '/assets/LOGO.png',
-    'UAS NMIMS Club': '/assets/uas.png',
-    'Raw Vision Media': '/assets/raw.png'
+    'UAS NMIMS Club': '/assets/ua.jpeg',
+    'Raw Vision Media': '/assets/ra.jpeg'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
