@@ -1,9 +1,16 @@
-node_modules
-.env
-.env.local
-.git
-*.log
+# Backend files - don't deploy these with frontend
+server.js
+models/
 test-mongodb.js
-MONGODB_TROUBLESHOOTING.md
-README.md
-.DS_Store
+
+# Environment files (already in .gitignore but adding here too)
+.env
+.env.*
+
+# Development files
+node_modules/
+*.log
+
+# Build files
+.cache/
+dist/
