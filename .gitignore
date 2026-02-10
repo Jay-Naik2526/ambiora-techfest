@@ -30,7 +30,13 @@ Thumbs.db
 .LSOverride
 
 # Test files
-test-mongodb.js
+backend/test-mongodb.js
+
+# Backend environment variables
+backend/.env
+backend/.env.local
+backend/.env.production
+backend/.env.*.local
 
 # Temporary files
 *.tmp
