@@ -52,6 +52,7 @@ async function showDashboard() {
     document.getElementById('admin-dashboard').classList.add('active');
 
     setupLogout();
+    setupTabs();
     await fetchAndRenderData();
 }
 
@@ -62,6 +63,19 @@ function setupLogout() {
     });
 }
 
+function setupTabs() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            filterAndRender(tab.dataset.category);
+        });
+    });
+}
+
+let allRegistrations = [];
+
 async function fetchAndRenderData() {
     try {
         const response = await fetch(getApiUrl('admin/registrations'), {
@@ -71,7 +85,8 @@ async function fetchAndRenderData() {
         const data = await response.json();
 
         if (data.success) {
-            renderRegistrations(data.registrations);
+            allRegistrations = data.registrations;
+            filterAndRender('all');
         } else {
             localStorage.removeItem('admin_token');
             location.reload();
@@ -81,53 +96,51 @@ async function fetchAndRenderData() {
     }
 }
 
-function renderRegistrations(registrations) {
+function filterAndRender(category) {
     const sectionsContainer = document.getElementById('registration-sections');
     const statTotal = document.getElementById('stat-total');
-    const statCategories = document.getElementById('stat-categories');
+    const statCount = document.getElementById('stat-count');
 
-    sectionsContainer.innerHTML = '';
-    statCategories.innerHTML = '';
-
-    // Grouping by category
-    const categorized = {};
-    let totalCount = 0;
-
-    registrations.forEach(reg => {
+    // Calculate display data
+    const displayData = [];
+    allRegistrations.forEach(reg => {
         reg.events.forEach(event => {
-            const cat = event.eventCategory || 'other';
-            if (!categorized[cat]) categorized[cat] = [];
-            categorized[cat].push({
-                ...event,
-                userName: reg.userName,
-                userEmail: reg.userEmail,
-                userPhone: reg.userPhone,
-                orderId: reg.orderId,
-                paymentStatus: reg.paymentStatus,
-                date: reg.createdAt
-            });
-            totalCount++;
+            if (category === 'all' || (event.eventCategory && event.eventCategory.toLowerCase() === category.toLowerCase())) {
+                displayData.push({
+                    ...event,
+                    userName: reg.userName,
+                    userEmail: reg.userEmail,
+                    userPhone: reg.userPhone,
+                    orderId: reg.orderId,
+                    paymentStatus: reg.paymentStatus,
+                    date: reg.createdAt
+                });
+            }
         });
     });
 
-    statTotal.textContent = totalCount;
+    statTotal.textContent = allRegistrations.length + " Orders";
+    statCount.textContent = displayData.length;
 
-    // Sort categories (Competition first, then Workshops, etc)
-    const sortedCats = Object.keys(categorized).sort();
+    sectionsContainer.innerHTML = '';
+
+    if (displayData.length === 0) {
+        sectionsContainer.innerHTML = `<p style="text-align: center; padding: 40px; color: var(--color-white-muted);">No registrations found for this category.</p>`;
+        return;
+    }
+
+    // Grouping by category for the display
+    const grouped = {};
+    displayData.forEach(item => {
+        const cat = item.eventCategory || 'other';
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(item);
+    });
+
+    const sortedCats = Object.keys(grouped).sort();
 
     sortedCats.forEach(cat => {
-        const count = categorized[cat].length;
-
-        // Add Stat Card
-        const statCard = document.createElement('div');
-        statCard.className = 'stat-card';
-        statCard.innerHTML = `
-            <div class="stat-label">${cat}s</div>
-            <div class="stat-value" style="color: ${getColorForCategory(cat)}">${count}</div>
-        `;
-        statCategories.appendChild(statCard);
-
-        // Add Table Section
+        const items = grouped[cat];
         const section = document.createElement('section');
         section.className = 'admin-section';
         section.innerHTML = `
@@ -136,7 +149,7 @@ function renderRegistrations(registrations) {
                     <span class="category-dot" style="background: ${getColorForCategory(cat)}"></span>
                     ${cat.charAt(0).toUpperCase() + cat.slice(1)}s
                 </h2>
-                <span class="page-label">${count} Total</span>
+                <span class="page-label">${items.length} Registered</span>
             </div>
             <div class="table-container">
                 <table class="admin-table">
@@ -151,7 +164,7 @@ function renderRegistrations(registrations) {
                         </tr>
                     </thead>
                     <tbody>
-                        ${categorized[cat].map(item => `
+                        ${items.map(item => `
                             <tr>
                                 <td><strong>${item.userName}</strong></td>
                                 <td>${item.eventName}</td>
@@ -175,8 +188,9 @@ function renderRegistrations(registrations) {
         sectionsContainer.appendChild(section);
     });
 
-    // Setup Export
-    document.getElementById('export-csv').onclick = () => exportToCSV(registrations);
+    // Setup Exports
+    document.getElementById('export-csv').onclick = () => exportToCSV(displayData);
+    document.getElementById('export-excel').onclick = () => exportToExcel(displayData, category);
 }
 
 function getColorForCategory(cat) {
@@ -188,25 +202,23 @@ function getColorForCategory(cat) {
     }
 }
 
-function exportToCSV(registrations) {
+function exportToCSV(displayData) {
     const rows = [
         ['Date', 'User Name', 'Email', 'Phone', 'Event Name', 'Category', 'Price', 'Order ID', 'Status']
     ];
 
-    registrations.forEach(reg => {
-        reg.events.forEach(event => {
-            rows.push([
-                new Date(reg.createdAt).toLocaleString(),
-                reg.userName,
-                reg.userEmail,
-                reg.userPhone,
-                event.eventName,
-                event.eventCategory,
-                event.eventPrice,
-                reg.orderId,
-                reg.paymentStatus
-            ]);
-        });
+    displayData.forEach(item => {
+        rows.push([
+            new Date(item.date).toLocaleString(),
+            item.userName,
+            item.userEmail,
+            item.userPhone,
+            item.eventName,
+            item.eventCategory,
+            item.eventPrice,
+            item.orderId,
+            item.paymentStatus
+        ]);
     });
 
     let csvContent = "data:text/csv;charset=utf-8,"
@@ -219,4 +231,41 @@ function exportToCSV(registrations) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+function exportToExcel(displayData, category) {
+    // Check if XLSX library is loaded
+    if (typeof XLSX === 'undefined') {
+        alert('Excel library is still loading. Please try again in a moment.');
+        return;
+    }
+
+    const data = displayData.map(item => ({
+        'Registration Date': new Date(item.date).toLocaleString(),
+        'User Name': item.userName,
+        'Email': item.userEmail,
+        'Phone': item.userPhone,
+        'Event Name': item.eventName,
+        'Category': item.eventCategory,
+        'Price (INR)': item.eventPrice,
+        'Order ID': item.orderId,
+        'Payment Status': item.paymentStatus
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Registrations");
+
+    // Auto-size columns
+    const maxWidths = {};
+    data.forEach(row => {
+        Object.keys(row).forEach(key => {
+            const val = String(row[key] || '');
+            maxWidths[key] = Math.max(maxWidths[key] || key.length, val.length);
+        });
+    });
+    worksheet['!cols'] = Object.keys(maxWidths).map(key => ({ wch: maxWidths[key] + 2 }));
+
+    const fileName = `ambiora_${category}_${new Date().toISOString().split('T')[0]}.xlsx`;
+    XLSX.writeFile(workbook, fileName);
 }

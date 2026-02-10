@@ -44,6 +44,16 @@
                 <h1 class="text-gradient">Registrations Overview</h1>
             </div>
             <div class="admin-actions">
+                <button id="export-excel" class="btn-export" style="background: #1d6f42; color: white;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Export Excel
+                </button>
                 <button id="export-csv" class="btn-export">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -57,15 +67,23 @@
             </div>
         </header>
 
+        <!-- Category Tabs -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-category="all">All Registrations</button>
+            <button class="tab-btn" data-category="competition">Competitions</button>
+            <button class="tab-btn" data-category="workshop">Workshops</button>
+            <button class="tab-btn" data-category="gaming">Gaming</button>
+        </div>
+
         <!-- Stats -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-label">Total Registrations</div>
-                <div id="stat-total" class="stat-value">0</div>
+                <div class="stat-label">Displaying</div>
+                <div id="stat-count" class="stat-value">0</div>
             </div>
-            <div id="stat-categories" class="stats-grid"
-                style="grid-column: span 3; margin-bottom: 0; gap: var(--space-6);">
-                <!-- Dynamic Category Stats -->
+            <div id="stat-total-wrapper" class="stat-card">
+                <div class="stat-label">Total Orders</div>
+                <div id="stat-total" class="stat-value">0</div>
             </div>
         </div>
 
@@ -74,6 +92,10 @@
             <!-- Dynamic Tables -->
         </div>
     </main>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 
     <!-- Scripts -->
     <script type="module" src="/src/pages/admin.js"></script>
