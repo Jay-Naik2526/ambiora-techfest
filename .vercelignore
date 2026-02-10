@@ -1,0 +1,19 @@
+# Files to ignore for BACKEND deployment
+# This tells the backend project to skip frontend files
+
+# Frontend files
+*.html
+!MONGODB_TROUBLESHOOTING.md
+
+# Frontend source
+src/
+assets/
+
+# Build artifacts  
+dist/
+.cache/
+
+# Development
+node_modules/
+*.log
+.DS_Store
