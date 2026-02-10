@@ -59,6 +59,13 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Serve static files (frontend) from the root directory
+app.use(express.static('./', {
+    extensions: ['html'],
+    index: 'index.html'
+}));
+
+
 // ─── AUTHENTICATION MIDDLEWARE ───────────────────────
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
