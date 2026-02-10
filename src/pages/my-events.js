@@ -119,7 +119,24 @@ async function createTicketCard(ticket) {
 
     // Get event details for WhatsApp links
     const eventDetails = eventsData.find(e => e.id === ticket.eventId);
-    const whatsappSection = eventDetails && eventDetails.whatsapp ? `
+    let whatsappButtons = '';
+
+    if (eventDetails && eventDetails.whatsapp) {
+        if (eventDetails.whatsapp.community) {
+            whatsappButtons += `
+                <a href="${eventDetails.whatsapp.community}" target="_blank" style="padding: 0.6rem; background: rgba(37, 211, 102, 0.1); border: 1px solid rgba(37, 211, 102, 0.3); color: #25D366; text-decoration: none; border-radius: 6px; font-size: 0.75rem; text-align: center; font-weight: 500; transition: all 0.2s;">
+                    Join Community
+                </a>`;
+        }
+        if (eventDetails.whatsapp.group) {
+            whatsappButtons += `
+                <a href="${eventDetails.whatsapp.group}" target="_blank" style="padding: 0.6rem; background: rgba(37, 211, 102, 0.1); border: 1px solid rgba(37, 211, 102, 0.3); color: #25D366; text-decoration: none; border-radius: 6px; font-size: 0.75rem; text-align: center; font-weight: 500; transition: all 0.2s;">
+                    Join Group
+                </a>`;
+        }
+    }
+
+    const whatsappSection = whatsappButtons ? `
         <div class="ticket-whatsapp-section" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
             <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg">
@@ -127,13 +144,8 @@ async function createTicketCard(ticket) {
                 </svg>
                 <strong>Join Official Groups</strong>
             </p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-                <a href="${eventDetails.whatsapp.community}" target="_blank" style="padding: 0.6rem; background: rgba(37, 211, 102, 0.1); border: 1px solid rgba(37, 211, 102, 0.3); color: #25D366; text-decoration: none; border-radius: 6px; font-size: 0.75rem; text-align: center; font-weight: 500; transition: all 0.2s;">
-                    Join Community
-                </a>
-                <a href="${eventDetails.whatsapp.group}" target="_blank" style="padding: 0.6rem; background: rgba(37, 211, 102, 0.1); border: 1px solid rgba(37, 211, 102, 0.3); color: #25D366; text-decoration: none; border-radius: 6px; font-size: 0.75rem; text-align: center; font-weight: 500; transition: all 0.2s;">
-                    Join Game Group
-                </a>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem;">
+                ${whatsappButtons}
             </div>
         </div>
     ` : '';

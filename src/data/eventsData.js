@@ -16,6 +16,10 @@ export const eventsData = [
         judging: 'Industry/Academic Resource Person',
         note: 'External Teams: Breakfast, Lunch, and Dinner may be provided on request on a paid basis',
         highlights: ['₹25,000 Prize Pool', '24 Hours', 'Mentorship'],
+
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/BQt7J1R7o1FJAuemBZWk9t?mode=gi_t'
+        },
         image: '/assets/gd.jpeg'
     },
     {
@@ -31,6 +35,10 @@ export const eventsData = [
         venue: 'CC-II',
         prizes: { first: 4000, second: 3000, third: 2000 },
         highlights: ['AI/ML', 'Deep Learning', '₹9,000 Prize Pool'],
+
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/Du76ymg1IedEvzZTdC0pwA?mode=gi_t'
+        },
         image: '/assets/deep.jpeg'
     },
     {
@@ -46,6 +54,10 @@ export const eventsData = [
         venue: 'CC-II',
         prizes: { first: 2500, second: 1500, third: 1000 },
         highlights: ['Team Coding', 'Relay Format', '₹5,000 Prize Pool'],
+
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/DNMS8sco8uG4CmxBTeKfE2?mode=gi_t'
+        },
         image: '/assets/cd.jpeg'
     },
     {
@@ -258,6 +270,10 @@ export const eventsData = [
         venue: 'TBA',
         prizes: { first: 1000, second: 500 },
         highlights: ['Tech + Cinema', 'Creative', '₹1,500 Prize Pool'],
+
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/HKQJ84gOvS52s87jvHnzUU?mode=gi_t'
+        },
         image: '/assets/ra.jpeg'
     }
 
