@@ -2,6 +2,8 @@
    AMBIORA - CASHFREE PAYMENT SERVICE
    ============================================ */
 
+import { API_CONFIG } from '../config/api.js';
+
 /**
  * Cashfree Payment Integration Service
  * 
@@ -129,7 +131,7 @@ async function createOrder(cart, user) {
             customer_phone: user.phone || '9999999999'
         },
         order_meta: {
-            return_url: `https://muskier-nonreverentially-jonelle.ngrok-free.dev/checkout.html?order_id=${orderId}&status={order_status}`
+            return_url: `${API_CONFIG.BASE_URL}/checkout.html?order_id=${orderId}&status={order_status}`
         },
         order_note: `Ambiora Tech Fest - ${cart.map(i => i.name).join(', ')}`,
         order_items: cart.map(item => ({
@@ -145,7 +147,7 @@ async function createOrder(cart, user) {
     // The backend holds the secret key and calls Cashfree API
     // ──────────────────────────────────────────────────
     try {
-        const response = await fetch('/api/cashfree/create-order', {
+        const response = await fetch(`${API_CONFIG.API_URL}/cashfree/create-order`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -369,7 +371,7 @@ function checkPaymentStatus() {
  */
 async function verifyPayment(orderId) {
     try {
-        const response = await fetch(`/api/cashfree/order/${orderId}`);
+        const response = await fetch(`${API_CONFIG.API_URL}/cashfree/order/${orderId}`);
         const result = await response.json();
 
         if (!result.success) {

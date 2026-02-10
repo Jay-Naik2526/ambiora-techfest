@@ -2,15 +2,15 @@
    AMBIORA - AUTHENTICATION UTILITY
    ============================================ */
 
+import { API_CONFIG } from '../config/api.js';
+
 /**
  * Authentication Manager
  * Handles user registration, login, logout, and session management
  * Uses backend API with JWT tokens
  */
 
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3001/api'
-    : 'https://ambiora-techfest.vercel.app/api';
+const API_URL = API_CONFIG.API_URL;
 
 class AuthManager {
     constructor() {
