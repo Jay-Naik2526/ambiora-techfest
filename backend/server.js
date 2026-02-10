@@ -12,6 +12,7 @@ import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import User from './models/User.js';
 import EventRegistration from './models/EventRegistration.js';
+import Newsletter from './models/Newsletter.js';
 
 // Load environment variables
 dotenv.config();
@@ -544,6 +545,34 @@ app.get('/api/admin/registrations', authenticateAdmin, async (req, res) => {
             success: false,
             message: 'Server error fetching registration data'
         });
+    }
+});
+
+// ─── NEWSLETTER ENDPOINTS ────────────────────────────
+app.post('/api/newsletter/subscribe', async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ success: false, message: 'Email is required' });
+        }
+
+        // Check if already subscribed
+        const existingSubscriber = await Newsletter.findOne({ email: email.toLowerCase() });
+        if (existingSubscriber) {
+            return res.status(200).json({ success: true, message: 'You are already subscribed!' });
+        }
+
+        const newSubscriber = new Newsletter({ email });
+        await newSubscriber.save();
+
+        console.log(`✅ New newsletter subscriber: ${email}`);
+
+        res.status(201).json({ success: true, message: 'Successfully subscribed to the newsletter!' });
+
+    } catch (error) {
+        console.error('❌ Newsletter subscription error:', error.message);
+        res.status(500).json({ success: false, message: 'Server error', error: error.message });
     }
 });
 

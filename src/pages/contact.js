@@ -154,36 +154,65 @@ function initNewsletterForm() {
     const form = document.getElementById('newsletter-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const input = form.querySelector('.newsletter-input');
+        const email = input.value.trim();
         const btn = form.querySelector('.newsletter-btn');
 
-        // Animate button
+        if (!email) return;
+
+        // Animate button click
         anime({
             targets: btn,
-            scale: [1, 0.9, 1.1, 1],
-            duration: 400,
+            scale: [1, 0.9, 1],
+            duration: 200,
             easing: 'easeInOutQuad'
         });
 
-        // Clear input and show feedback
-        setTimeout(() => {
-            input.value = '';
-            input.placeholder = 'Subscribed! ✓';
+        // Disable input during request
+        input.disabled = true;
+        btn.disabled = true;
 
-            anime({
-                targets: input,
-                backgroundColor: ['rgba(0, 212, 170, 0.2)', 'rgba(255, 255, 255, 0.03)'],
-                duration: 1000,
-                easing: 'easeOutQuad'
+        try {
+            const response = await fetch('/api/newsletter/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
             });
 
-            setTimeout(() => {
-                input.placeholder = 'Your email';
-            }, 3000);
-        }, 500);
+            const data = await response.json();
+
+            if (data.success) {
+                // Success feedback
+                input.value = '';
+                input.placeholder = 'Subscribed! ✓';
+
+                anime({
+                    targets: input,
+                    backgroundColor: ['rgba(0, 212, 170, 0.2)', 'rgba(255, 255, 255, 0.03)'],
+                    duration: 1000,
+                    easing: 'easeOutQuad'
+                });
+
+                setTimeout(() => {
+                    input.placeholder = 'Your email';
+                }, 4000);
+            } else {
+                // Error feedback
+                alert(data.message || 'Subscription failed. Please try again.');
+            }
+
+        } catch (error) {
+            console.error('Newsletter error:', error);
+            alert('Something went wrong. Please check your connection.');
+        } finally {
+            input.disabled = false;
+            btn.disabled = false;
+        }
     });
 }
 
