@@ -22,34 +22,35 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!MONGODB_URI) {
     console.error('❌ ERROR: MONGODB_URI not found in .env file');
-    process.exit(1);
+    // process.exit(1); // Don't crash serverless function immediately
 }
 
 if (!JWT_SECRET) {
     console.error('❌ ERROR: JWT_SECRET not found in .env file');
-    process.exit(1);
+    // process.exit(1);
 }
 
-// Connect to MongoDB
-mongoose.connect(MONGODB_URI, {
-    dbName: 'ambiora', // Explicitly set database name
-    serverSelectionTimeoutMS: 10000,
-    socketTimeoutMS: 45000,
-})
-    .then(() => {
+// Connect to MongoDB with caching for serverless
+let isConnected = false;
+
+const connectDB = async () => {
+    if (isConnected) return;
+    try {
+        await mongoose.connect(MONGODB_URI, {
+            dbName: 'ambiora',
+            serverSelectionTimeoutMS: 10000,
+            socketTimeoutMS: 45000,
+        });
+        isConnected = true;
         console.log('✅ Connected to MongoDB successfully');
-        console.log(`   Database: ${mongoose.connection.name}`);
-        console.log(`   Host: ${mongoose.connection.host}`);
-    })
-    .catch((error) => {
+    } catch (error) {
         console.error('❌ MongoDB connection error:', error.message);
-        console.error('\n📋 Troubleshooting:');
-        console.error('1. Check MongoDB Atlas Network Access (allow 0.0.0.0/0)');
-        console.error('2. Verify database user credentials');
-        console.error('3. Try local MongoDB: MONGODB_URI=mongodb://localhost:27017/ambiora');
-        console.error('4. See MONGODB_TROUBLESHOOTING.md for detailed solutions\n');
-        process.exit(1);
-    });
+    }
+};
+
+// Connect immediately if not serverless (optional, but good for local)
+// connectDB();
+
 
 
 const app = express();
@@ -58,6 +59,14 @@ const PORT = process.env.PORT || 3001;
 // ─── MIDDLEWARE ───────────────────────────────────────
 app.use(cors());
 app.use(express.json());
+
+// Ensure DB connection for every request (Serverless pattern)
+app.use(async (req, res, next) => {
+    if (!isConnected) {
+        await connectDB();
+    }
+    next();
+});
 
 // ─── AUTHENTICATION MIDDLEWARE ───────────────────────
 const authenticateToken = (req, res, next) => {
@@ -548,8 +557,15 @@ app.get('/api/health', (req, res) => {
 });
 
 // ─── START SERVER ────────────────────────────────────
-app.listen(PORT, () => {
-    console.log(`\n🚀 Ambiora Payment Server running on http://localhost:${PORT}`);
-    console.log(`   Environment: ${CASHFREE_ENV}`);
-    console.log(`   Health check: http://localhost:${PORT}/api/health\n`);
-});
+// Only start server if running directly (not imported as module)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`\n🚀 Ambiora Payment Server running on http://localhost:${PORT}`);
+        console.log(`   Environment: ${CASHFREE_ENV}`);
+        console.log(`   Health check: http://localhost:${PORT}/api/health\n`);
+        connectDB(); // Connect immediately for local dev
+    });
+}
+
+// Export for Vercel
+export default app;

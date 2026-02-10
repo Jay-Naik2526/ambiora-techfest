@@ -37,11 +37,11 @@ const categoryIcons = {
 // Host logo mapping for flip card back faces
 const hostLogos = {
     'Google Developers Student Club': '/assets/gd.jpeg',
-    'Ambiora': '/assets/LOGO.png',
+    'Ambiora': '/assets/Topbarlog.jpeg',
     'Atrangi Club': '/assets/at.jpeg',
     'ADC Club': '/assets/ad.jpeg',
     'Avinya Club': '/assets/av.jpeg',
-    'Coding Club': '/assets/LOGO.png',
+    'Coding Club': '/assets/Topbarlog.jpeg',
     'UAS NMIMS Club': '/assets/ua.jpeg',
     'Raw Vision Media': '/assets/ra.jpeg'
 };
