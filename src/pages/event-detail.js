@@ -50,7 +50,7 @@ function populateEventDetails(event) {
 
     // Update description
     const descEl = document.getElementById('event-description');
-    if (descEl) descEl.textContent = event.description;
+    if (descEl) descEl.innerHTML = event.description;
 
     // Update price with external price if available
     const priceEl = document.getElementById('event-price');
