@@ -20,7 +20,7 @@ export const API_CONFIG = {
     DEVELOPMENT_URL: 'http://localhost:3001',
 
     // Production: Vercel backend
-    PRODUCTION_URL: 'https://ambiora-backend.vercel.app',
+    PRODUCTION_URL: 'https://ambiora-techfest.vercel.app',
 
     // Get current backend URL based on environment
     get BASE_URL() {
