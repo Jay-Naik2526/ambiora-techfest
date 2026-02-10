@@ -478,6 +478,66 @@ app.get('/api/cashfree/order/:orderId', async (req, res) => {
     }
 });
 
+// ─── ADMIN ENDPOINTS ────────────────────────────────
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+
+// Admin Login
+app.post('/api/admin/login', (req, res) => {
+    const { password } = req.body;
+
+    if (password === ADMIN_PASSWORD) {
+        const token = jwt.sign(
+            { role: 'admin' },
+            JWT_SECRET,
+            { expiresIn: '1d' }
+        );
+
+        return res.json({
+            success: true,
+            token
+        });
+    }
+
+    res.status(401).json({
+        success: false,
+        message: 'Invalid admin password'
+    });
+});
+
+// Admin Middleware
+const authenticateAdmin = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) return res.status(401).json({ success: false, message: 'Admin token required' });
+
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+        if (err || decoded.role !== 'admin') {
+            return res.status(403).json({ success: false, message: 'Unauthorized' });
+        }
+        next();
+    });
+};
+
+// Get all registrations with user details
+app.get('/api/admin/registrations', authenticateAdmin, async (req, res) => {
+    try {
+        const registrations = await EventRegistration.find()
+            .sort({ createdAt: -1 });
+
+        res.json({
+            success: true,
+            registrations
+        });
+    } catch (error) {
+        console.error('❌ Admin registrations error:', error.message);
+        res.status(500).json({
+            success: false,
+            message: 'Server error fetching registration data'
+        });
+    }
+});
+
 // ─── HEALTH CHECK ────────────────────────────────────
 app.get('/api/health', (req, res) => {
     res.json({
