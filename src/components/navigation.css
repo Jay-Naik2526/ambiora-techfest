@@ -24,7 +24,7 @@
 }
 
 .nav-logo-img {
-    height: 48px;
+    height: 144px;
     width: auto;
     object-fit: contain;
 }
@@ -162,6 +162,12 @@ nav {
 /* ============================================
    Cart Badge & Tooltip Overrides
    ============================================ */
+
+/* Cart nav item needs relative positioning for tooltip */
+.cart-nav-item {
+    position: relative;
+}
+
 /* Ensure cart button behaves exactly like nav-link */
 .nav-link.cart-icon {
     position: relative;
@@ -170,6 +176,11 @@ nav {
     margin: 0;
     font-size: inherit;
     font-family: inherit;
+}
+
+/* Prevent the ::after pseudo-element tooltip on cart (it uses .cart-tooltip instead) */
+.nav-link.cart-icon::after {
+    display: none !important;
 }
 
 /* Cart Badge - Minimalist Dot */
@@ -190,24 +201,24 @@ nav {
     box-shadow: 0 0 5px var(--color-accent-primary);
 }
 
-/* Tooltip for Cart (matches .nav-link::after) */
+/* Tooltip for Cart - appears above the cart icon */
 .cart-tooltip {
     position: absolute;
-    bottom: calc(100% + 15px);
+    bottom: calc(100% + 12px);
     left: 50%;
-    transform: translateX(-50%) translateY(10px) scale(0.9);
-    background: rgba(10, 10, 12, 0.9);
+    transform: translateX(-50%) translateY(8px) scale(0.9);
+    background: rgba(15, 15, 20, 0.95);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(0, 212, 170, 0.3);
     color: var(--color-white);
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 8px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: var(--font-medium);
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 0.2s ease;
     pointer-events: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     z-index: 100;
@@ -265,7 +276,7 @@ nav {
     }
 
     .nav-logo-img {
-        height: 36px;
+        height: 108px;
     }
 }
 
@@ -278,6 +289,7 @@ nav {
         transform: translateX(-50%) !important;
         flex-direction: row;
         gap: 4px;
+        padding: 6px 10px;
     }
 
     nav {
@@ -286,6 +298,16 @@ nav {
 
     .nav-links {
         flex-direction: row;
+    }
+
+    .nav-link {
+        width: 30px;
+        height: 30px;
+    }
+
+    .nav-link svg {
+        width: 16px;
+        height: 16px;
     }
 
     .nav-right {
@@ -301,5 +323,27 @@ nav {
     .nav-link::after,
     .nav-cta::after {
         display: none;
+    }
+
+    .nav-logo-img {
+        height: 84px;
+    }
+}
+
+/* Tiny screens */
+@media (max-width: 360px) {
+    .nav-header {
+        gap: 2px;
+        padding: 5px 8px;
+    }
+
+    .nav-link {
+        width: 28px;
+        height: 28px;
+    }
+
+    .nav-link svg {
+        width: 14px;
+        height: 14px;
     }
 }

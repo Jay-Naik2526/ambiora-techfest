@@ -207,18 +207,46 @@ async function handlePaymentSuccess(cart, user, paymentResult) {
         // ──────────────────────────────────────────────────
         try {
             const registrationData = {
-                events: cart.map(item => ({
-                    eventId: item.id,
-                    eventName: item.name,
-                    eventPrice: item.price,
-                    eventCategory: item.category,
-                    eventDate: item.date || '',
-                    eventDescription: item.description || ''
-                })),
+                events: cart.map((item, index) => {
+                    // Start: Generate ticket details for MongoDB
+                    const prefix = item.name.substring(0, 2).toUpperCase();
+                    const orderId = paymentResult.order_id || `ORDER_${Date.now()}`;
+                    const suffix = String(index + 1).padStart(3, '0');
+                    const ticketId = `${prefix}${orderId.substring(0, 4)}${suffix}`;
+
+                    const qrData = JSON.stringify({
+                        ticketId,
+                        eventId: item.id,
+                        eventName: item.name,
+                        userName: user.name,
+                        userEmail: user.email,
+                        purchaseDate: new Date().toISOString(),
+                        orderId: orderId
+                    });
+
+                    return {
+                        eventId: item.id,
+                        eventName: item.name,
+                        eventPrice: item.price,
+                        eventCategory: item.category,
+                        eventDate: item.date || '',
+                        eventDescription: item.description || '',
+                        // Add missing fields to improve backend sync quality
+                        ticketId: ticketId,
+                        eventHost: item.host || 'Ambiora',
+                        qrData: qrData,
+                        teamName: '',
+                        teamMembers: []
+                    };
+                }),
                 totalAmount: cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0),
                 orderId: paymentResult.order_id || `ORDER_${Date.now()}`,
                 paymentSessionId: paymentResult.payment_session_id || '',
-                paymentStatus: 'success'
+                paymentStatus: 'success',
+                // Add user details to registration level
+                userName: user.name,
+                userEmail: user.email,
+                userPhone: user.phone || ''
             };
 
             const saveResult = await saveRegistration(registrationData);

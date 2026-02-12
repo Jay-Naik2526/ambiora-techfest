@@ -1,0 +1,111 @@
+/* ============================================
+   PAGE HEADER STYLES
+   ============================================ */
+
+.page-header {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-16);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-label {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white-muted);
+    margin-bottom: var(--space-6);
+    opacity: 0;
+    animation: fadeIn 0.8s ease 0.2s forwards;
+}
+
+.page-title {
+    margin-bottom: var(--space-6);
+}
+
+.page-title-line {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-7xl);
+    /* Keeping large for impact */
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-white);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease forwards;
+}
+
+.page-title-line:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.page-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-white-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 0.4s forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        padding-top: var(--space-24);
+    }
+
+    .page-title-line {
+        font-size: var(--text-4xl);
+    }
+
+    .page-subtitle {
+        font-size: var(--text-lg);
+        padding: 0 var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title-line {
+        font-size: var(--text-3xl);
+    }
+
+    .page-subtitle {
+        font-size: var(--text-base);
+    }
+}

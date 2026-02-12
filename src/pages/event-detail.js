@@ -46,7 +46,7 @@ function populateEventDetails(event) {
 
     // Update host
     const hostEl = document.getElementById('event-host');
-    if (hostEl) hostEl.innerHTML = `Hosted by <strong>${event.host}</strong>`;
+    if (hostEl) hostEl.innerHTML = `Hosted by <strong>AMBIORA X ${event.host}</strong>`;
 
     // Update description
     const descEl = document.getElementById('event-description');
@@ -56,9 +56,15 @@ function populateEventDetails(event) {
     const priceEl = document.getElementById('event-price');
     if (priceEl) {
         if (event.externalPrice) {
-            priceEl.innerHTML = `₹${event.price} (In-house Team) <span class="price-external">/ ₹${event.externalPrice} (External Team)</span>${event.priceNote ? `<span class="price-note">${event.priceNote}</span>` : ''}`;
+            priceEl.innerHTML = `₹${event.price} (In-house Team) <span class="price-external">/ ₹${event.externalPrice} (External Team)</span>`;
         } else {
             priceEl.textContent = `₹${event.price}`;
+        }
+
+        // Update price note (sibling element)
+        const priceNoteEl = priceEl.parentElement.querySelector('.price-note');
+        if (priceNoteEl) {
+            priceNoteEl.textContent = event.priceNote || 'per participant';
         }
     }
 
@@ -171,7 +177,7 @@ function populateRelatedEvents(currentEvent) {
             <h3 class="related-card-title">${event.name}</h3>
             <div class="related-card-meta">
                 <span class="related-card-price">₹${event.price}</span>
-                <span class="related-card-host">${event.host}</span>
+                <span class="related-card-host">AMBIORA X ${event.host}</span>
             </div>
         </a>
     `).join('');

@@ -8,15 +8,7 @@
    PAGE HEADER
    ============================================ */
 
-.page-header {
-    min-height: 50vh;
-    display: flex;
-    align-items: center;
-    padding-top: var(--space-32);
-    padding-top: var(--space-32);
-    /* background: var(--gradient-dark); Removed to show video */
-    background: transparent;
-}
+/* Page Header styles removed to use global PageHeader.css */
 
 .page-header-content {
     max-width: 900px;
@@ -42,7 +34,7 @@
     display: block;
     font-family: var(--font-display);
     font-size: var(--text-6xl);
-    font-weight: var(--font-light);
+    /* font-weight removed to use global bold style */
     line-height: 1.15;
     opacity: 0;
     transform: translateY(30px);
@@ -531,5 +523,58 @@
         flex-direction: column;
         gap: var(--space-2);
         text-align: center;
+    }
+
+    /* Remove grayscale on mobile — show images clearly */
+    .image-container {
+        filter: none !important;
+    }
+
+    .team-member:hover .image-container::before {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding-top: var(--space-12);
+    }
+
+    .page-title-line {
+        font-size: var(--text-3xl);
+    }
+
+    .page-subtitle {
+        font-size: var(--text-base);
+    }
+
+    .team-grid {
+        max-width: 100%;
+        gap: var(--space-4);
+    }
+
+    .team-member {
+        border-radius: var(--radius-lg);
+    }
+
+    .member-name {
+        font-size: var(--text-lg);
+    }
+
+    .member-role {
+        font-size: var(--text-xs);
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .team-section {
+        padding-bottom: 5rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--space-6);
     }
 }

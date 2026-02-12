@@ -424,6 +424,12 @@
    RESPONSIVE
    ============================================ */
 
+@media (max-width: 768px) {
+    .cart-notification {
+        bottom: 100px;
+    }
+}
+
 @media (max-width: 480px) {
     .cart-panel-content {
         max-width: 100%;
@@ -441,5 +447,17 @@
     .cart-icon svg {
         width: 18px;
         height: 18px;
+    }
+
+    .cart-notification {
+        bottom: 80px;
+        left: var(--space-4);
+        right: var(--space-4);
+        transform: translateX(0) translateY(100px);
+        width: auto;
+    }
+
+    .cart-notification--visible {
+        transform: translateX(0) translateY(0);
     }
 }

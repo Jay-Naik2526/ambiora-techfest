@@ -1,0 +1,104 @@
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+
+.footer {
+    background: var(--color-black-rich);
+    padding: var(--space-20) 0 var(--space-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
+    /* Ensure it stays above other content if needed */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-16);
+    flex-wrap: wrap;
+    /* Safety for smaller screens */
+    gap: var(--space-8);
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-tagline {
+    font-size: var(--text-base);
+    color: var(--color-white-muted);
+    margin-top: var(--space-4);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--space-16);
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    min-width: 150px;
+}
+
+.footer-heading {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-4);
+    color: var(--color-white);
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: var(--space-2);
+}
+
+.footer-list a {
+    font-size: var(--text-sm);
+    color: var(--color-white-muted);
+    transition: color var(--transition-fast);
+    text-decoration: none;
+}
+
+.footer-list a:hover {
+    color: var(--color-accent-primary);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--space-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.footer-copyright,
+.footer-credit {
+    font-size: var(--text-sm);
+    color: var(--color-white-subtle);
+}
+
+/* Responsive Footer adjustments */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: var(--space-10);
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--space-8);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -36,12 +36,12 @@ const categoryIcons = {
 
 // Host logo mapping for flip card back faces
 const hostLogos = {
-    'Google Developers Student Club': '/assets/gd.jpeg',
-    'Ambiora': '/assets/Topbarlog.jpeg',
+    'Google Developers Group on Campus': '/assets/gd.jpeg',
+    'Ambiora': '/assets/Topbarlog.png',
     'Atrangi Club': '/assets/at.jpeg',
     'ADC Club': '/assets/ad.jpeg',
     'Avinya Club': '/assets/av.jpeg',
-    'Coding Club': '/assets/Topbarlog.jpeg',
+    'Coding Club': '/assets/Topbarlog.png',
     'UAS NMIMS Club': '/assets/ua.jpeg',
     'Raw Vision Media': '/assets/ra.jpeg'
 };
@@ -151,7 +151,7 @@ function createEventCard(event, index, myEvents = []) {
                     </div>
                     <div class="event-card-host">
                         <span>Hosted by</span>
-                        <strong>${event.host}</strong>
+                        <strong>AMBIORA X ${event.host}</strong>
                     </div>
                     <div class="event-card-actions">
                         <a href="${detailsBtnHref}" class="event-card-details-btn">${detailsBtnText}</a>
@@ -162,13 +162,14 @@ function createEventCard(event, index, myEvents = []) {
                     </div>
                 </div>
             </div>
-            <div class="event-card-back">
-                <div class="event-card-back-glow"></div>
-                <div class="event-card-back-content">
-                    <img src="${event.image || hostLogo}" alt="${event.name}" class="static-event-image" />
-                </div>
-                <!-- <div class="event-card-back-scanlines"></div> -->
-            </div>
+                        <div class="event-card-back">
+                            <div class="event-card-back-glow"></div>
+                            <div class="event-card-back-content">
+                                <img src="${event.image || hostLogo}" alt="${event.name}" class="static-event-image" />
+                                <div class="event-card-logo-text" style="font-weight: bold; margin-top: 10px; font-size: 1.2rem; text-align: center; color: white;">AMBIORA X ${event.host}</div>
+                            </div>
+                            <!-- <div class="event-card-back-scanlines"></div> -->
+                        </div>
         </div>
     `;
 
@@ -288,10 +289,44 @@ function initFilterButtons() {
 }
 
 /**
- * Initialize card hover effects
+ * Initialize card hover effects and mobile touch-flip
  */
 function initCardEffects() {
-    // Card effects are now handled by CSS
+    // Touch-flip support for mobile devices
+    const isTouchDevice = window.matchMedia('(hover: none)').matches || 'ontouchstart' in window;
+
+    if (isTouchDevice) {
+        const eventsGrid = document.querySelector('.events-grid');
+        if (!eventsGrid) return;
+
+        eventsGrid.addEventListener('click', (e) => {
+            const card = e.target.closest('.event-card');
+
+            // If clicking an action button inside a flipped card, let it through
+            if (e.target.closest('.event-card-details-btn') || e.target.closest('.event-card-cart-btn')) {
+                return;
+            }
+
+            // Close all other flipped cards
+            document.querySelectorAll('.event-card.flipped').forEach(c => {
+                if (c !== card) c.classList.remove('flipped');
+            });
+
+            // Toggle the clicked card
+            if (card) {
+                card.classList.toggle('flipped');
+            }
+        });
+
+        // Close flipped cards when tapping outside the grid
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.events-grid')) {
+                document.querySelectorAll('.event-card.flipped').forEach(c => {
+                    c.classList.remove('flipped');
+                });
+            }
+        });
+    }
 }
 
 // Export for use elsewhere

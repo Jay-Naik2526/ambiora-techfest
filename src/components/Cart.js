@@ -2,12 +2,14 @@
    AMBIORA - CART SYSTEM
    ============================================ */
 
-import { isAuthenticated, redirectToLogin, getCurrentUser } from '../utils/auth.js';
+import { isAuthenticated, redirectToLogin, getCurrentUser, getRegistrations } from '../utils/auth.js';
+import { eventsData } from '../data/eventsData.js';
 
 // Cart state management
 class CartManager {
     constructor() {
         this.storageKey = 'ambiora_cart';
+        this.eventsStorageKey = 'ambiora_my_events';
         this.listeners = [];
         this.init();
     }
@@ -17,6 +19,86 @@ class CartManager {
         this.createCartUI();
         this.updateCartBadge();
         this.bindEvents();
+
+        // Sync purchased events if logged in
+        if (isAuthenticated()) {
+            this.syncPurchasedEvents();
+        }
+    }
+
+    // Sync purchased events from backend
+    async syncPurchasedEvents() {
+        try {
+            const result = await getRegistrations();
+            if (result.success && result.registrations) {
+                // Flatten events from all paid registrations (accept both 'PAID' and 'success')
+                const successRegistrations = result.registrations.filter(r =>
+                    r.paymentStatus === 'PAID' || r.paymentStatus === 'success'
+                );
+
+                console.log('Syncing events from registrations:', {
+                    total: result.registrations.length,
+                    successful: successRegistrations.length
+                });
+
+                let allTickets = [];
+                successRegistrations.forEach(reg => {
+                    if (reg.events && Array.isArray(reg.events)) {
+                        // Process each event in the registration
+                        const tickets = reg.events.map((event, index) => {
+                            // Find static event data
+                            const staticData = eventsData.find(e => e.id === event.eventId);
+
+                            // Reconstruct missing details
+                            const ticketId = event.ticketId || `${reg.orderId.substring(0, 8)}-${index + 1}`.toUpperCase();
+                            const eventName = event.eventName || staticData?.name || 'Unknown Event';
+                            const eventHost = event.eventHost || staticData?.host || 'Ambiora';
+                            const userName = reg.userName || currentUser?.name || 'User';
+                            const userEmail = reg.userEmail || currentUser?.email || '';
+                            const purchaseDate = reg.createdAt || new Date().toISOString();
+
+                            // Generate QR Data if missing
+                            let qrData = event.qrData;
+                            if (!qrData) {
+                                qrData = JSON.stringify({
+                                    ticketId,
+                                    eventId: event.eventId,
+                                    eventName,
+                                    userName,
+                                    userEmail,
+                                    purchaseDate,
+                                    orderId: reg.orderId
+                                });
+                            }
+
+                            return {
+                                ...event,
+                                ticketId,
+                                eventName,
+                                eventHost,
+                                eventCategory: event.eventCategory || staticData?.category || 'General',
+                                eventPrice: event.eventPrice || staticData?.price || 0,
+                                userName,
+                                userEmail,
+                                userPhone: reg.userPhone || currentUser?.phone || '',
+                                orderId: reg.orderId,
+                                purchaseDate,
+                                qrData
+                            };
+                        });
+                        allTickets = [...allTickets, ...tickets];
+                    }
+                });
+
+                // Update local storage
+                localStorage.setItem(this.eventsStorageKey, JSON.stringify(allTickets));
+
+                // Notify any listeners (optional, but good for UI updates)
+                // this.notifyListeners(); 
+            }
+        } catch (error) {
+            console.error('Error syncing purchased events:', error);
+        }
     }
 
     // Get cart from localStorage
@@ -394,7 +476,7 @@ class CartManager {
             const updatedEvents = [...myEvents, ...newTickets];
 
             // Save to localStorage
-            localStorage.setItem('ambiora_my_events', JSON.stringify(updatedEvents));
+            localStorage.setItem(this.eventsStorageKey, JSON.stringify(updatedEvents));
 
             return { success: true, tickets: newTickets };
         } catch (error) {
@@ -421,7 +503,7 @@ class CartManager {
 
     // Get purchased events from localStorage
     getMyEvents() {
-        const events = localStorage.getItem('ambiora_my_events');
+        const events = localStorage.getItem(this.eventsStorageKey);
         return events ? JSON.parse(events) : [];
     }
 

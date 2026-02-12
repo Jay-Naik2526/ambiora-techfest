@@ -8,15 +8,7 @@
    PAGE HEADER
    ============================================ */
 
-.page-header {
-    min-height: 50vh;
-    display: flex;
-    align-items: center;
-    padding-top: var(--space-32);
-    background: transparent;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
+/* Page Header styles removed to use global PageHeader.css */
 
 .page-header-content {
     max-width: 800px;
@@ -42,7 +34,7 @@
     display: block;
     font-family: var(--font-display);
     font-size: var(--text-7xl);
-    font-weight: var(--font-light);
+    /* font-weight removed to use global bold style */
     line-height: 1.1;
     opacity: 0;
     transform: translateY(30px);
@@ -156,6 +148,11 @@
     transform: rotateY(0deg);
 }
 
+/* Flip on tap for touch devices (toggled via JS) */
+.event-card.flipped .event-card-inner {
+    transform: rotateY(0deg);
+}
+
 /* ============================================
    CARD FRONT FACE (EVENT DETAILS - shown on hover)
    ============================================ */
@@ -237,7 +234,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: top center;
     transition: transform 0.5s ease;
 }
 
@@ -263,6 +260,7 @@
     display: flex;
     flex-direction: column;
     padding: 0 var(--space-5) var(--space-5);
+    overflow: hidden;
 }
 
 /* ============================================
@@ -348,7 +346,7 @@
     gap: var(--space-2);
     padding: var(--space-2) var(--space-3);
     background: rgba(0, 212, 170, 0.1);
-    border: 1px solid rgba(0, 212, 170, 0.2);
+    /* Border removed as requested */
     color: var(--color-accent-primary);
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
@@ -372,7 +370,6 @@
 /* Gaming category specific styling */
 .event-card[data-category="gaming"] .event-card-category {
     background: rgba(99, 102, 241, 0.1);
-    border-color: rgba(99, 102, 241, 0.2);
     color: var(--color-accent-secondary);
 }
 
@@ -390,7 +387,6 @@
 /* Workshop category styling */
 .event-card[data-category="workshop"] .event-card-category {
     background: rgba(244, 114, 182, 0.1);
-    border-color: rgba(244, 114, 182, 0.2);
     color: var(--color-accent-tertiary);
 }
 
@@ -468,28 +464,30 @@
 .event-card-highlights {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    gap: var(--space-4);
+    /* Increased gap since we removed padding/background */
     margin-bottom: var(--space-4);
     min-height: 54px;
     /* Space for at least two rows of tags */
 }
 
 .highlight-tag {
-    padding: 4px 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-full);
-    font-size: 10px;
+    font-size: 11px;
+    /* Slightly larger since no container */
     font-weight: var(--font-medium);
-    color: var(--color-white-subtle);
+    color: var(--color-accent-primary);
+    /* Changed to accent color for better visibility */
     text-transform: uppercase;
-    letter-spacing: 0.03em;
-    transition: all 0.3s ease;
+    letter-spacing: 0.05em;
+    border: none;
+    background: transparent;
+    padding: 0;
 }
 
 .event-card:hover .highlight-tag {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: var(--color-white);
+    /* Brighten on hover */
 }
 
 /* Meta Info */
@@ -816,18 +814,53 @@
 }
 
 @media (max-width: 768px) {
+    .page-header {
+        padding-top: var(--space-16);
+    }
+
     .page-title-line {
         font-size: var(--text-5xl);
     }
 
+    .page-subtitle {
+        font-size: var(--text-sm);
+    }
+
     .events-filter {
         justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    .events-section {
+        padding-bottom: 6rem;
+    }
+
+    .event-card-inner {
+        min-height: 460px;
+    }
+
+    .event-card-image {
+        height: 120px;
+    }
+
+    .event-card-highlights {
+        min-height: auto;
+    }
+
+    .register-title {
+        font-size: var(--text-3xl);
+    }
+
+    .register-text {
+        font-size: var(--text-sm);
     }
 }
 
 @media (max-width: 600px) {
     .events-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-4);
     }
 
     .page-title-line {
@@ -839,6 +872,22 @@
         font-size: var(--text-xs);
     }
 
+    .event-card-inner {
+        min-height: 420px;
+    }
+
+    .event-card-title {
+        font-size: var(--text-lg);
+    }
+
+    .event-card-desc {
+        font-size: var(--text-xs);
+    }
+
+    .event-card-content {
+        padding: 0 var(--space-4) var(--space-4);
+    }
+
     .footer-content {
         flex-direction: column;
         gap: var(--space-10);
@@ -848,5 +897,82 @@
         flex-direction: column;
         gap: var(--space-2);
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding-top: var(--space-12);
+    }
+
+    .page-title-line {
+        font-size: var(--text-3xl);
+    }
+
+    .page-label {
+        font-size: var(--text-xs);
+    }
+
+    .events-grid {
+        gap: var(--space-3);
+    }
+
+    .event-card-inner {
+        min-height: 420px;
+    }
+
+    .event-card-image {
+        height: 100px;
+    }
+
+    .event-card-title {
+        font-size: var(--text-base);
+    }
+
+    .event-card-desc {
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        height: auto;
+        margin-bottom: var(--space-2);
+    }
+
+    .event-card-highlights {
+        margin-bottom: var(--space-2);
+    }
+
+    .highlight-tag {
+        padding: 3px 8px;
+        font-size: 9px;
+    }
+
+    .event-card-meta {
+        padding: var(--space-2) 0;
+    }
+
+    .event-card-actions {
+        padding-top: var(--space-1);
+    }
+
+    .event-card-details-btn,
+    .event-card-cart-btn {
+        padding: var(--space-2);
+        font-size: 11px;
+    }
+
+    .event-card-host {
+        margin-bottom: var(--space-2);
+    }
+
+    .register-title {
+        font-size: var(--text-2xl);
+    }
+
+    .register-section {
+        padding-bottom: 5rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--space-6);
     }
 }

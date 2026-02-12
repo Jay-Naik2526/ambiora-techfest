@@ -604,6 +604,10 @@
 }
 
 @media (max-width: 480px) {
+    .event-detail-page {
+        padding-top: var(--space-12);
+    }
+
     .event-title {
         font-size: var(--text-3xl);
     }
@@ -614,5 +618,30 @@
 
     .price-value {
         font-size: var(--text-4xl);
+    }
+
+    .event-description {
+        font-size: var(--text-sm);
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-additional-info .detail-card {
+        padding: var(--space-4);
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--space-6);
+    }
+
+    .event-hero {
+        padding-bottom: var(--space-8);
+    }
+
+    .related-events {
+        padding-bottom: 6rem;
     }
 }
