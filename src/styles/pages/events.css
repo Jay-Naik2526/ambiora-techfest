@@ -860,7 +860,10 @@
 @media (max-width: 600px) {
     .events-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-4);
+        gap: 2.5rem;
+        padding: 0 1.25rem;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .page-title-line {
@@ -872,8 +875,29 @@
         font-size: var(--text-xs);
     }
 
+    /* Fix invisible cards: Make content drive height */
     .event-card-inner {
-        min-height: 420px;
+        min-height: auto;
+        height: auto;
+    }
+
+    .event-card-front {
+        position: relative;
+        inset: auto;
+        height: auto;
+        min-height: 450px;
+        /* Ensure minimum size */
+    }
+
+    .event-card-back {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+    }
+
+    .event-card-image {
+        height: 180px;
+        /* Larger image for mobile */
     }
 
     .event-card-title {
@@ -885,7 +909,16 @@
     }
 
     .event-card-content {
-        padding: 0 var(--space-4) var(--space-4);
+        padding: 0 var(--space-5) var(--space-5);
+    }
+
+    /* Ensure card doesn't overflow */
+    .event-card {
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+        /* Allow 3D effect if needed, but inner handles overflow */
+        margin-bottom: 0;
     }
 
     .footer-content {
@@ -914,15 +947,20 @@
     }
 
     .events-grid {
-        gap: var(--space-3);
+        gap: 3rem;
+        /* Even more gap on small screens */
     }
 
     .event-card-inner {
+        min-height: auto;
+    }
+
+    .event-card-front {
         min-height: 420px;
     }
 
     .event-card-image {
-        height: 100px;
+        height: 160px;
     }
 
     .event-card-title {
