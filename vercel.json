@@ -1,0 +1,44 @@
+{
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/events",
+            "destination": "/events.html"
+        },
+        {
+            "source": "/timeline",
+            "destination": "/timeline.html"
+        },
+        {
+            "source": "/about",
+            "destination": "/about.html"
+        },
+        {
+            "source": "/contact",
+            "destination": "/contact.html"
+        },
+        {
+            "source": "/my-events",
+            "destination": "/my-events.html"
+        },
+        {
+            "source": "/checkout",
+            "destination": "/checkout.html"
+        },
+        {
+            "source": "/login",
+            "destination": "/login.html"
+        },
+        {
+            "source": "/signup",
+            "destination": "/signup.html"
+        },
+        {
+            "source": "/event-detail",
+            "destination": "/event-detail.html"
+        }
+    ]
+}

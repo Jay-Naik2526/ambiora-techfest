@@ -294,7 +294,7 @@
 /* Responsive */
 @media screen and (max-width: 768px) {
     .timeline-container::after {
-        left: 31px;
+        left: 29px;
     }
 
     .timeline-item {
@@ -312,15 +312,15 @@
 
     .timeline-item.left::after,
     .timeline-item.right::after {
-        left: 23px;
+        left: 24px;
         right: auto;
     }
 
     .timeline-item.left .timeline-connector,
     .timeline-item.right .timeline-connector {
-        left: 31px;
+        left: 30px;
         /* Start from line */
-        width: 39px;
+        width: 40px;
         /* Reach content padding (70px) */
     }
 
