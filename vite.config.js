@@ -18,7 +18,8 @@ export default defineConfig({
         eventDetail: resolve(__dirname, 'event-detail.html'),
         faculty: resolve(__dirname, 'faculty.html'),
         team: resolve(__dirname, 'team_members.html'),
-        admin: resolve(__dirname, 'admin.html')
+        admin: resolve(__dirname, 'admin.html'),
+        timeline: resolve(__dirname, 'timeline.html')
       }
     }
   },
