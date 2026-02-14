@@ -55,10 +55,19 @@ function populateEventDetails(event) {
     // Update price with external price if available
     const priceEl = document.getElementById('event-price');
     if (priceEl) {
-        if (event.externalPrice) {
+        if (event.kitPrice) {
+            // Show price breakdown
+            priceEl.innerHTML = `₹${event.price} (Event) + ₹${event.kitPrice} (Mandatory Kit)`;
+
+            // Add note
+            const priceNoteEl = priceEl.parentElement.querySelector('.price-note');
+            if (priceNoteEl) {
+                priceNoteEl.style.display = 'none'; // Hide redundant note if breakdown is clear
+            }
+        } else if (event.externalPrice) {
             priceEl.innerHTML = `₹${event.price} (In-house Team) <span class="price-external">/ ₹${event.externalPrice} (External Team)</span>`;
         } else {
-            priceEl.textContent = `₹${event.price}`;
+            priceEl.innerHTML = `₹${event.price}`;
         }
 
         // Update price note (sibling element)
@@ -139,10 +148,13 @@ function populateEventDetails(event) {
     if (cartBtn) {
         cartBtn.addEventListener('click', () => {
             const cart = initCart();
+            const price = event.price + (event.kitPrice || 0);
+            const name = event.kitPrice ? `${event.name} + Mandatory Kit` : event.name;
+
             cart.addItem({
                 id: event.id,
-                name: event.name,
-                price: event.price,
+                name: name,
+                price: price,
                 category: event.category,
                 host: event.host
             });

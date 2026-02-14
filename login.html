@@ -89,7 +89,9 @@
             <input type="checkbox" id="remember" name="remember" class="form-checkbox">
             <label for="remember" class="form-checkbox-label">Remember me</label>
           </div>
-          <a href="#" class="form-link">Forgot password?</a>
+          <a href="#" class="form-link"
+            onclick="event.preventDefault(); alert('If you forgot your password, please contact:\n\nRohan Painter\nPhone: 9016055843'); return false;">Forgot
+            password?</a>
         </div>
 
         <button type="submit" class="auth-submit-btn" id="submit-btn">

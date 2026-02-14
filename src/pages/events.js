@@ -130,13 +130,20 @@ function createEventCard(event, index, myEvents = []) {
                             ${categoryIcon}
                             <span>${categoryLabel}</span>
                         </div>
-                        <div class="event-card-price">${event.externalPrice ? `₹${event.price} / ₹${event.externalPrice}${event.priceNote ? `<span class="price-note">${event.priceNote}</span>` : ''}` : `₹${event.price}`}</div>
+                        <div class="event-card-price">
+                            ${event.kitPrice ? `₹${event.price} + ₹${event.kitPrice}<span class="price-note" style="font-size:0.7em; opacity:0.8;">(Event + Kit)</span>` :
+            event.externalPrice ? `₹${event.price} / ₹${event.externalPrice}${event.priceNote ? `<span class="price-note">${event.priceNote}</span>` : ''}` :
+                `₹${event.price}`
+        }
+                        </div>
                     </div>
                     <h3 class="event-card-title">${event.name}</h3>
-                    <p class="event-card-desc">${event.description}</p>
+                    <p class="event-card-desc">${event.shortDescription || event.description}</p>
+                    ${event.highlights && event.highlights.length > 0 ? `
                     <div class="event-card-highlights">
                         ${event.highlights.map(h => `<span class="highlight-tag">${h}</span>`).join('')}
                     </div>
+                    ` : ''}
                     <div class="event-card-meta">
                         <span class="event-card-date">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -189,10 +196,13 @@ function createEventCard(event, index, myEvents = []) {
  */
 function addToCart(event) {
     const cart = initCart();
+    const price = event.price + (event.kitPrice || 0);
+    const name = event.kitPrice ? `${event.name} + Mandatory Kit` : event.name;
+
     cart.addItem({
         id: event.id,
-        name: event.name,
-        price: event.price,
+        name: name,
+        price: price,
         category: event.category,
         host: event.host
     });
