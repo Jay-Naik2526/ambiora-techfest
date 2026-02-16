@@ -131,13 +131,16 @@ function createEventCard(event, index, myEvents = []) {
                             <span>${categoryLabel}</span>
                         </div>
                         <div class="event-card-price">
-                            ${event.kitPrice ? `₹${event.price} + ₹${event.kitPrice}<span class="price-note" style="font-size:0.7em; opacity:0.8;">(Event + Kit)</span>` :
-            event.externalPrice ? `₹${event.price} / ₹${event.externalPrice}${event.priceNote ? `<span class="price-note">${event.priceNote}</span>` : ''}` :
-                `₹${event.price}`
+                            ${event.kitOptional ? `₹${event.price}` :
+            event.kitPrice ? `₹${event.price + event.kitPrice}<span class="price-note" style="font-size:0.7em; opacity:0.8;"> w/ Kit</span>` :
+                event.externalPrice ? `₹${event.price} / ₹${event.externalPrice}${event.priceNote ? `<span class="price-note">${event.priceNote}</span>` : ''}` :
+                    `₹${event.price}`
         }
                         </div>
                     </div>
-                    <h3 class="event-card-title">${event.name}</h3>
+                    <h3 class="event-card-title"${event.kitOptional ? ' style="margin-bottom: auto;"' : ''}>${event.name}</h3>
+                    
+                    ${!event.kitOptional ? `
                     <p class="event-card-desc">${event.shortDescription || event.description}</p>
                     ${event.highlights && event.highlights.length > 0 ? `
                     <div class="event-card-highlights">
@@ -160,24 +163,42 @@ function createEventCard(event, index, myEvents = []) {
                         <span>Hosted by</span>
                         <strong>AMBIORA X ${event.host}</strong>
                     </div>
-                    <div class="event-card-actions">
-                        <a href="${detailsBtnHref}" class="event-card-details-btn">${detailsBtnText}</a>
-                        <button class="${btnClass}" data-event-id="${event.id}" ${isPurchased ? 'disabled' : ''}>
-                            ${btnIcon}
-                            ${btnText}
-                        </button>
+                    ` : `
+                    <div class="event-card-meta" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <span class="event-card-date" style="font-size: 0.75rem;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            ${event.date}
+                        </span>
                     </div>
-                </div>
-            </div>
-                        <div class="event-card-back">
-                            <div class="event-card-back-glow"></div>
-                            <div class="event-card-back-content">
-                                <img src="${event.image || hostLogo}" alt="${event.name}" class="static-event-image" />
-                                <div class="event-card-logo-text" style="font-weight: bold; margin-top: 10px; font-size: 1.2rem; text-align: center; color: white;">AMBIORA X ${event.host}</div>
-                            </div>
-                            <!-- <div class="event-card-back-scanlines"></div> -->
-                        </div>
+                    <div class="event-card-host" style="margin-top: 8px; margin-bottom: 12px;">
+                        <span>Hosted by</span>
+                        <strong>AMBIORA X ${event.host}</strong>
+                    </div>
+                    `}
+
+<div class="event-card-actions">
+    <a href="${detailsBtnHref}" class="event-card-details-btn">${detailsBtnText}</a>
+    <button class="${btnClass}" data-event-id="${event.id}" ${isPurchased ? 'disabled' : ''}>
+        ${btnIcon}
+        ${btnText}
+    </button>
+</div>
+                </div >
+            </div >
+    <div class="event-card-back">
+        <div class="event-card-back-glow"></div>
+        <div class="event-card-back-content">
+            <img src="${event.image || hostLogo}" alt="${event.name}" class="static-event-image" />
+            <div class="event-card-logo-text" style="font-weight: bold; margin-top: 10px; font-size: 1.2rem; text-align: center; color: white;">AMBIORA X ${event.host}</div>
         </div>
+        <!-- <div class="event-card-back-scanlines"></div> -->
+    </div>
+        </div >
     `;
 
     // Add to cart click handler
@@ -196,6 +217,14 @@ function createEventCard(event, index, myEvents = []) {
  */
 function addToCart(event) {
     const cart = initCart();
+
+    // For optional kit events, redirect to detail page for selection
+    if (event.kitOptional) {
+        window.location.href = `/ event - detail.html ? id = ${event.id} `;
+        return;
+    }
+
+    // For mandatory kit or regular events
     const price = event.price + (event.kitPrice || 0);
     const name = event.kitPrice ? `${event.name} + Mandatory Kit` : event.name;
 

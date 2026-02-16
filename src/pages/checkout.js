@@ -78,18 +78,36 @@ function renderOrderSummary(cart) {
     container.innerHTML = cart.map(item => {
         // Dynamically fetch the latest price from eventsData
         const eventData = eventsData.find(e => e.id === item.id);
-        const dynamicPrice = eventData ? eventData.price : item.price;
+        let dynamicPrice = item.price; // Default to cart price
 
-        // Update cart item price to match eventsData (source of truth)
+        // If event data exists, recalculate carefully
+        if (eventData) {
+            // Check if kit is included in this specific cart item
+            if (item.includesKit && eventData.kitPrice) {
+                dynamicPrice = eventData.price + eventData.kitPrice;
+            } else if (eventData.kitPrice && !eventData.kitOptional) {
+                // Mandatory kit case
+                dynamicPrice = eventData.price + eventData.kitPrice;
+            } else {
+                // Standard base price
+                dynamicPrice = eventData.price;
+            }
+        }
+
+        // Update cart item price to match calculated price
         item.price = dynamicPrice;
+
+        const displayName = item.includesKit && !item.name.includes('+') ?
+            `${item.name} + Kit` : item.name;
 
         return `
             <div class="order-item">
                 <div class="order-item-info">
-                    <div class="order-item-name">${item.name}</div>
+                    <div class="order-item-name">${displayName}</div>
                     <div class="order-item-details">
                         <span class="order-item-category">${item.category}</span>
                         <span class="order-item-host">${item.host || 'Ambiora'}</span>
+                        ${item.includesKit ? '<span class="order-item-kit-badge" style="display:inline-block; font-size:0.7em; background:rgba(0,212,170,0.1); color:#00d4aa; padding:2px 6px; border-radius:4px; margin-left:6px;">Includes Kit</span>' : ''}
                     </div>
                 </div>
                 <div class="order-item-price">₹${dynamicPrice}</div>

@@ -52,11 +52,59 @@ function populateEventDetails(event) {
     const descEl = document.getElementById('event-description');
     if (descEl) descEl.innerHTML = event.description;
 
-    // Update price with external price if available
+    // Update price with optional kit checkbox if available
     const priceEl = document.getElementById('event-price');
     if (priceEl) {
-        if (event.kitPrice) {
-            // Show price breakdown
+        if (event.kitOptional && event.kitPrice) {
+            // Show base price only
+            priceEl.innerHTML = `₹${event.price}`;
+
+            // Add kit checkbox section after price section
+            const priceSection = priceEl.closest('.event-price-section');
+            if (priceSection) {
+                // Remove existing kit section if it exists
+                const existingKit = priceSection.parentElement.querySelector('.event-kit-section');
+                if (existingKit) existingKit.remove();
+
+                // Create kit option section
+                const kitSection = document.createElement('div');
+                kitSection.className = 'event-kit-section';
+                kitSection.innerHTML = `
+                    <div class="kit-checkbox-wrapper">
+                        <input type="checkbox" id="include-kit" class="kit-checkbox">
+                        <label for="include-kit" class="kit-checkbox-label">
+                            <span class="kit-label-text">
+                                <strong>Include Robotics Kit</strong>
+                                <span class="kit-recommended-badge">Recommended</span>
+                            </span>
+                            <span class="kit-price">+₹${event.kitPrice}</span>
+                        </label>
+                    </div>
+                    <div class="kit-details">
+                        <span class="kit-details-title" style="color: #fff;">Why you need this kit:</span>
+                        <p class="kit-detail-item" style="margin-top:4px; line-height:1.4;">
+                            Get the complete hands-on experience! Includes all motors, sensors, and boards needed to build your bot and dominate the Robo Soccer arena. <strong>And yes, it's yours to keep!</strong>
+                        </p>
+                    </div>
+                    <div class="kit-total-price">
+                        <span class="total-label">Total:</span>
+                        <span class="total-value" id="dynamic-total">₹${event.price}</span>
+                    </div>
+                `;
+                priceSection.parentElement.insertBefore(kitSection, priceSection.nextSibling);
+
+                // Add checkbox event listener
+                const checkbox = document.getElementById('include-kit');
+                const totalEl = document.getElementById('dynamic-total');
+                if (checkbox && totalEl) {
+                    checkbox.addEventListener('change', (e) => {
+                        const total = event.price + (e.target.checked ? event.kitPrice : 0);
+                        totalEl.textContent = `₹${total}`;
+                    });
+                }
+            }
+        } else if (event.kitPrice && !event.kitOptional) {
+            // Show price breakdown for mandatory kit
             priceEl.innerHTML = `₹${event.price} (Event) + ₹${event.kitPrice} (Mandatory Kit)`;
 
             // Add note
@@ -148,15 +196,33 @@ function populateEventDetails(event) {
     if (cartBtn) {
         cartBtn.addEventListener('click', () => {
             const cart = initCart();
-            const price = event.price + (event.kitPrice || 0);
-            const name = event.kitPrice ? `${event.name} + Mandatory Kit` : event.name;
+
+            // Check if kit is optional and selected
+            let includesKit = false;
+            let finalPrice = event.price;
+            let itemName = event.name;
+
+            if (event.kitOptional) {
+                const kitCheckbox = document.getElementById('include-kit');
+                includesKit = kitCheckbox ? kitCheckbox.checked : false;
+                finalPrice = event.price + (includesKit ? event.kitPrice : 0);
+                itemName = includesKit ? `${event.name} + Kit` : event.name;
+            } else if (event.kitPrice) {
+                // Mandatory kit
+                includesKit = true;
+                finalPrice = event.price + event.kitPrice;
+                itemName = `${event.name} + Mandatory Kit`;
+            }
 
             cart.addItem({
                 id: event.id,
-                name: name,
-                price: price,
+                name: itemName,
+                price: finalPrice,
                 category: event.category,
-                host: event.host
+                host: event.host,
+                includesKit: includesKit,
+                kitPrice: includesKit ? event.kitPrice : 0,
+                basePrice: event.price
             });
         });
     }
