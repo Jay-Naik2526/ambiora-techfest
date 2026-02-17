@@ -18,6 +18,7 @@ function initSignupPage() {
     const form = document.getElementById('signup-form');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
+    const sapIdInput = document.getElementById('sapId'); // Added sapId input
     const phoneInput = document.getElementById('phone');
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirm-password');
@@ -87,8 +88,10 @@ function initSignupPage() {
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
 
+        const sapId = sapIdInput.value.trim();
+
         // Attempt signup (now async)
-        const result = await signup({ name, email, phone, password });
+        const result = await signup({ name, email, phone, sapId, password });
 
         // Remove loading state
         submitBtn.classList.remove('loading');

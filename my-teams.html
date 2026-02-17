@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Teams | Ambiora Tech Fest 2026</title>
+    <style>
+        .nav-logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-logo {
+                top: 1.5rem;
+                left: 1.5rem;
+            }
+        }
+    </style>
+    <meta name="description" content="Manage your teams for Ambiora Tech Fest events.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/styles/global.css">
+    <link rel="stylesheet" href="/src/components/navigation.css">
+    <link rel="stylesheet" href="/src/components/SimpleGrid.css">
+    <link rel="stylesheet" href="/src/styles/pages/auth.css">
+
+    <style>
+        /* Team specific styles */
+        .team-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 212, 170, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-event {
+            font-size: 0.9rem;
+            color: rgba(2, 212, 170, 0.8);
+        }
+
+        .team-role-badge {
+            background: rgba(0, 212, 170, 0.1);
+            color: #00d4aa;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-invite-section {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .invite-code {
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .copy-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        .member-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .member-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .member-item:last-child {
+            border-bottom: none;
+        }
+
+        .member-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            font-size: 0.8rem;
+            color: #fff;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            display: block;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        .member-sap {
+            display: block;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
+
+        .create-team-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            background: transparent;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .create-team-btn:hover {
+            border-color: #00d4aa;
+            color: #00d4aa;
+            background: rgba(0, 212, 170, 0.05);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .join-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Simple Grid Background -->
+    <div id="simple-grid"></div>
+
+    <!-- Logo (fixed at top-left) -->
+    <a href="/" class="nav-logo">
+        <img src="/assets/Topbarlog.png" alt="Ambiora" class="nav-logo-img">
+    </a>
+
+    <!-- Main Container -->
+    <div class="auth-container" style="max-width: 800px;">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">My Teams</h1>
+                <p class="auth-subtitle">Manage your squads and competitions</p>
+            </div>
+
+            <div class="auth-alert" id="team-alert">
+                <span id="team-alert-message"></span>
+            </div>
+
+            <!-- Action Buttons -->
+            <button id="open-create-modal" class="create-team-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Create New Team
+            </button>
+
+            <!-- Teams List -->
+            <div id="teams-list">
+                <!-- Loaded dynamically -->
+                <div style="text-align: center; color: rgba(255,255,255,0.4); padding: 2rem;">
+                    Loading teams...
+                </div>
+            </div>
+
+            <!-- Join Team Section -->
+            <div class="join-section">
+                <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.1rem;">Join a Team</h3>
+                <form id="join-team-form" style="display: flex; gap: 0.5rem;">
+                    <div style="flex: 1;">
+                        <input type="text" id="invite-code-input" class="form-input" placeholder="Enter Invite Code"
+                            required style="margin: 0;">
+                    </div>
+                    <button type="submit" class="auth-submit-btn" style="width: auto; margin: 0; white-space: nowrap;">
+                        Join Team
+                    </button>
+                </form>
+            </div>
+
+            <div class="auth-footer">
+                <a href="/profile.html" class="auth-footer-link">Back to Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Team Modal -->
+    <div class="modal" id="create-team-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 style="color: #fff; margin-bottom: 1.5rem;">Create a Team</h2>
+
+            <form id="create-team-form">
+                <div class="form-group">
+                    <label class="form-label">Select Event</label>
+                    <select id="event-select" class="form-input" required>
+                        <option value="">Select an event...</option>
+                        <!-- Populated dynamically -->
+                    </select>
+                    <span class="form-text" style="font-size: 0.8rem; color: rgba(255,255,255,0.4);">
+                        Only events you've registered for as a team are shown.
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Team Name</label>
+                    <input type="text" id="team-name" class="form-input" placeholder="e.g. The Code Warriors" required>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Create Team</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/pages/my-teams.js"></script>
+    <script type="module">
+        import { initSimpleGrid } from '/src/components/SimpleGrid.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initSimpleGrid('simple-grid', {
+                columns: 12,
+                rows: 8,
+                color: '#00d4aa',
+                opacity: 0.06,
+                glowOpacity: 0.12
+            });
+        });
+    </script>
+</body>
+
+</html>

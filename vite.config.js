@@ -19,7 +19,9 @@ export default defineConfig({
         faculty: resolve(__dirname, 'faculty.html'),
         team: resolve(__dirname, 'team_members.html'),
         admin: resolve(__dirname, 'admin.html'),
-        timeline: resolve(__dirname, 'timeline.html')
+        timeline: resolve(__dirname, 'timeline.html'),
+        profile: resolve(__dirname, 'profile.html'),
+        myTeams: resolve(__dirname, 'my-teams.html')
       }
     }
   },

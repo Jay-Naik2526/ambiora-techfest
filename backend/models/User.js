@@ -21,6 +21,13 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Phone number is required'],
         match: [/^\d{10}$/, 'Phone number must be 10 digits']
     },
+    sapId: {
+        type: String,
+        trim: true,
+        // sparse: true allows null/undefined values to duplicate, avoiding unique constraint errors for old users
+        sparse: true,
+        unique: true
+    },
     password: {
         type: String,
         required: [true, 'Password is required'],

@@ -118,9 +118,9 @@ function updateNavigationAuth() {
         const user = getCurrentUser();
 
         profileLinks.forEach(link => {
-            // Update to My Events page
-            link.setAttribute('href', '/my-events.html');
-            link.setAttribute('data-tooltip', 'My Events');
+            // Update to My Profile page
+            link.setAttribute('href', '/profile.html');
+            link.setAttribute('data-tooltip', 'My Profile');
 
             // Add right-click context menu for logout
             link.addEventListener('contextmenu', (e) => {

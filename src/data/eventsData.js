@@ -16,6 +16,8 @@ export const eventsData = [
         judging: 'Industry/Academic Resource Person',
         note: 'External Teams: Breakfast, Lunch, and Dinner may be provided on request on a paid basis',
         highlights: ['₹25,000 Prize Pool', '24 Hours', 'Mentorship'],
+        isTeamEvent: true,
+        teamSizeLimit: 6,
 
         whatsapp: {
             group: 'https://chat.whatsapp.com/BQt7J1R7o1FJAuemBZWk9t?mode=gi_t'
@@ -56,6 +58,8 @@ export const eventsData = [
         venue: 'CC-II',
         prizes: { first: 2500, second: 1500, third: 1000 },
         highlights: ['Team Coding', 'Relay Format', '₹5,000 Prize Pool'],
+        isTeamEvent: true,
+        teamSizeLimit: 4,
 
         whatsapp: {
             group: 'https://chat.whatsapp.com/DNMS8sco8uG4CmxBTeKfE2?mode=gi_t'
@@ -110,6 +114,8 @@ export const eventsData = [
         prizes: { first: 2600, second: 1600 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'Valorant', 'Multi-venue'],
+        isTeamEvent: true,
+        teamSizeLimit: 5,
         whatsapp: {
             community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
             group: 'https://chat.whatsapp.com/GYKLINuctygAGqV0BxpygZ?mode=gi_t'
@@ -131,6 +137,8 @@ export const eventsData = [
         prizes: { first: 1900, second: 1300 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'BGMI', 'Battle Royale'],
+        isTeamEvent: true,
+        teamSizeLimit: 4,
         whatsapp: {
             community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
             group: 'https://chat.whatsapp.com/G7ivF4WK4s7AvTtrjiN1sW?mode=gi_t'
@@ -192,6 +200,8 @@ export const eventsData = [
         prizes: { first: 900 },
         includes: ['Winner Certificates'],
         highlights: ['E-Sports', 'FIFA', 'Doubles'],
+        isTeamEvent: true,
+        teamSizeLimit: 2,
         whatsapp: {
             community: 'https://chat.whatsapp.com/CMAUzRHd39gDLV79MZR3vu',
             group: 'https://chat.whatsapp.com/JvBoX7lGVhQ04hyyeQEcR7?mode=gi_t'
@@ -235,7 +245,9 @@ export const eventsData = [
         workshopDuration: '5 Hours',
         eventDuration: '2 Hours',
         highlights: ['Hands-on Workshop', 'Robo Competition', '₹3,000 Prize Pool'],
-        image: '/assets/av.jpeg'
+        image: '/assets/av.jpeg',
+        isTeamEvent: true,
+        teamSizeLimit: 4
     },
     {
         id: 'drone-o-mania',
@@ -251,6 +263,8 @@ export const eventsData = [
         venue: 'Cricket Ground',
         prizes: { first: 13000, second: 10000, third: 7000 },
         highlights: ['₹30,000 Prize Pool', 'Obstacles Racing', 'Challenges'],
+        isTeamEvent: true,
+        teamSizeLimit: 2,
         image: '/assets/ua.jpeg'
     },
     {
@@ -282,6 +296,8 @@ export const eventsData = [
         venue: 'TBA',
         prizes: { first: 1000, second: 500 },
         highlights: ['Tech + Cinema', 'Creative', '₹1,500 Prize Pool'],
+        isTeamEvent: true,
+        teamSizeLimit: 5,
 
         whatsapp: {
             group: 'https://chat.whatsapp.com/HKQJ84gOvS52s87jvHnzUU?mode=gi_t'

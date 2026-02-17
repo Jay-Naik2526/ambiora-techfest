@@ -68,11 +68,31 @@
         </header>
 
         <!-- Category Tabs -->
-        <div class="admin-tabs">
-            <button class="tab-btn active" data-category="all">All Registrations</button>
-            <button class="tab-btn" data-category="competition">Competitions</button>
-            <button class="tab-btn" data-category="workshop">Workshops</button>
-            <button class="tab-btn" data-category="gaming">Gaming</button>
+        <!-- View Toggles & Filters -->
+        <div class="admin-controls"
+            style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+            <div class="view-toggles"
+                style="display: flex; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 8px;">
+                <button class="view-btn active" data-view="registrations"
+                    style="padding: 8px 16px; border:none; background: transparent; color: white; cursor: pointer; border-radius: 6px;">Registrations</button>
+                <button class="view-btn" data-view="teams"
+                    style="padding: 8px 16px; border:none; background: transparent; color: rgba(255,255,255,0.6); cursor: pointer; border-radius: 6px;">Teams</button>
+            </div>
+
+            <div class="filters" style="display: flex; gap: 1rem;">
+                <select id="event-filter"
+                    style="padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1);">
+                    <option value="all">All Events</option>
+                    <!-- Populated by JS -->
+                </select>
+
+                <div class="admin-tabs" style="display: flex; gap: 0.5rem;">
+                    <button class="tab-btn active" data-category="all">All Categories</button>
+                    <button class="tab-btn" data-category="competition">Competitions</button>
+                    <button class="tab-btn" data-category="workshop">Workshops</button>
+                    <button class="tab-btn" data-category="gaming">Gaming</button>
+                </div>
+            </div>
         </div>
 
         <!-- Stats -->

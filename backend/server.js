@@ -13,6 +13,7 @@ import jwt from 'jsonwebtoken';
 import User from './models/User.js';
 import EventRegistration from './models/EventRegistration.js';
 import Newsletter from './models/Newsletter.js';
+import Team from './models/Team.js';
 
 // Load environment variables
 dotenv.config();
@@ -112,11 +113,26 @@ app.post('/api/auth/signup', async (req, res) => {
             });
         }
 
+        // Check if SAP ID is provided and unique (if not empty)
+        let sapIdData = {};
+        if (req.body.sapId && req.body.sapId.trim()) {
+            const sapId = req.body.sapId.trim();
+            const existingSap = await User.findOne({ sapId });
+            if (existingSap) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'SAP ID already registered'
+                });
+            }
+            sapIdData.sapId = sapId;
+        }
+
         // Create new user (password will be hashed by the model)
         const user = new User({
             name: name.trim(),
             email: email.toLowerCase().trim(),
             phone: phone.replace(/\s/g, ''),
+            ...sapIdData,
             password
         });
 
@@ -228,6 +244,248 @@ app.get('/api/auth/user', authenticateToken, async (req, res) => {
             message: 'Server error',
             error: error.message
         });
+    }
+});
+
+// Update user profile (protected)
+app.put('/api/auth/profile', authenticateToken, async (req, res) => {
+    try {
+        const { sapId, phone, name } = req.body;
+        const updates = {};
+
+        if (name) updates.name = name.trim();
+        if (phone) updates.phone = phone.replace(/\s/g, '');
+
+        if (sapId) {
+            const sid = sapId.trim();
+            // Check uniqueness if changing
+            const existing = await User.findOne({ sapId: sid });
+            if (existing && existing._id.toString() !== req.user.id) {
+                return res.status(400).json({ success: false, message: 'SAP ID already taken' });
+            }
+            updates.sapId = sid;
+        }
+
+        const user = await User.findByIdAndUpdate(
+            req.user.id,
+            { $set: updates },
+            { new: true, runValidators: true }
+        ).select('-password');
+
+        res.json({ success: true, user });
+
+    } catch (error) {
+        console.error('❌ Update profile error:', error.message);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// ─── TEAM MANAGEMENT ENDPOINTS ───────────────────────
+
+import { eventsData } from '../src/data/eventsData.js';
+
+// Create Team (Leader only)
+app.post('/api/teams', authenticateToken, async (req, res) => {
+    try {
+        const { name, eventId } = req.body;
+
+        if (!name || !eventId) {
+            return res.status(400).json({ success: false, message: 'Team name and Event ID required' });
+        }
+
+        const user = await User.findById(req.user.id);
+
+        // Enforce SAP ID for Leader
+        if (!user.sapId) {
+            return res.status(400).json({
+                success: false,
+                message: 'Leader must have an SAP ID to create a team. Please update your profile.'
+            });
+        }
+
+        // Generate unique 6-char invite code
+        const inviteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+
+        const team = new Team({
+            name: name.trim(),
+            eventId,
+            leaderId: req.user.id,
+            inviteCode,
+            members: [{
+                userId: req.user.id,
+                name: user.name,
+                email: user.email,
+                sapId: user.sapId,
+                status: 'accepted' // Leader is always accepted
+            }]
+        });
+
+        await team.save();
+
+        res.status(201).json({ success: true, team });
+
+    } catch (error) {
+        console.error('❌ Create team error:', error.message);
+        if (error.code === 11000) {
+            return res.status(400).json({ success: false, message: 'Team name or Invite code collision. Try again.' });
+        }
+        res.status(500).json({ success: false, message: 'Server error creating team' });
+    }
+});
+
+// DEBUG ENDPOINT
+app.get('/api/debug-registrations', async (req, res) => {
+    try {
+        const regs = await EventRegistration.find().sort({ createdAt: -1 });
+        res.json({ count: regs.length, example: regs[0] || 'No data', all: regs });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// Get User's Teams
+app.get('/api/teams', authenticateToken, async (req, res) => {
+    try {
+        // Find teams where user is leader OR a member
+        const teams = await Team.find({
+            $or: [
+                { leaderId: req.user.id },
+                { 'members.userId': req.user.id }
+            ]
+        }).sort({ createdAt: -1 });
+
+        res.json({ success: true, teams });
+    } catch (error) {
+        console.error('❌ Get teams error:', error.message);
+        res.status(500).json({ success: false, message: 'Server error fetching teams' });
+    }
+});
+
+// Get Team Info by Invite Code (Public for join page)
+app.get('/api/teams/:inviteCode', async (req, res) => {
+    try {
+        const team = await Team.findOne({ inviteCode: req.params.inviteCode })
+            .select('name eventId members.length leaderId'); // Don't expose member details publicy yet
+
+        if (!team) return res.status(404).json({ success: false, message: 'Invalid invite code' });
+
+        // Fetch leader name
+        const leader = await User.findById(team.leaderId).select('name');
+
+        res.json({
+            success: true,
+            team: {
+                id: team._id,
+                name: team.name,
+                eventId: team.eventId,
+                leaderName: leader ? leader.name : 'Unknown',
+                memberCount: team.members.length
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// Join Team
+app.post('/api/teams/join', authenticateToken, async (req, res) => {
+    try {
+        const { inviteCode } = req.body;
+
+        const team = await Team.findOne({ inviteCode });
+        if (!team) return res.status(404).json({ success: false, message: 'Team not found' });
+
+        // Check if already member
+        const isMember = team.members.some(m => m.userId.toString() === req.user.id);
+        if (isMember) return res.status(400).json({ success: false, message: 'You are already in this team' });
+
+        const user = await User.findById(req.user.id);
+
+        if (!user.sapId) {
+            return res.status(400).json({
+                success: false,
+                message: 'SAP ID required to join team. Please update your profile.'
+            });
+        }
+
+        // PAYMENT VERIFICATION FOR PER-PARTICIPANT EVENTS
+        const event = eventsData.find(e => e.id === team.eventId);
+
+        if (event) {
+            // Determine if event is "Per Participant"
+            // If priceNote is 'Per Team', only leader pays.
+            // If priceNote is NOT 'Per Team' (e.g. 'Per Person' or empty/undefined default), THEN every member must pay.
+            const isPerTeam = event.priceNote && event.priceNote.toLowerCase().includes('per team');
+
+            if (!isPerTeam) {
+                // Member must have paid registration
+                const registration = await EventRegistration.findOne({
+                    userId: req.user.id,
+                    'events.eventId': team.eventId,
+                    // Check for success (case insensitive if needed, but usually standardized)
+                    paymentStatus: { $regex: new RegExp('^success$', 'i') }
+                });
+
+                if (!registration) {
+                    return res.status(400).json({
+                        success: false,
+                        message: `To join this team, you must first register and pay for "${event.name}".`
+                    });
+                }
+            }
+        }
+
+        team.members.push({
+            userId: user._id,
+            name: user.name,
+            email: user.email,
+            sapId: user.sapId,
+            status: 'accepted'
+        });
+
+        await team.save();
+
+        res.json({ success: true, message: 'Joined team successfully', team });
+
+    } catch (error) {
+        console.error('❌ Join team error:', error.message);
+        res.status(500).json({ success: false, message: 'Server error joining team' });
+    }
+});
+
+// Remove Team Member (Leader only)
+app.delete('/api/teams/:teamId/members/:userId', authenticateToken, async (req, res) => {
+    try {
+        const { teamId, userId } = req.params;
+
+        const team = await Team.findById(teamId);
+        if (!team) return res.status(404).json({ success: false, message: 'Team not found' });
+
+        // Check if requester is leader
+        if (team.leaderId.toString() !== req.user.id) {
+            return res.status(403).json({ success: false, message: 'Only the team leader can remove members' });
+        }
+
+        // Prevent removing self (leader)
+        if (userId === team.leaderId.toString()) {
+            return res.status(400).json({ success: false, message: 'Leader cannot be removed. disband team instead.' });
+        }
+
+        // Remove member
+        const initialLength = team.members.length;
+        team.members = team.members.filter(m => m.userId.toString() !== userId);
+
+        if (team.members.length === initialLength) {
+            return res.status(404).json({ success: false, message: 'Member not found in team' });
+        }
+
+        await team.save();
+
+        res.json({ success: true, message: 'Member removed successfully', team });
+
+    } catch (error) {
+        console.error('❌ Remove member error:', error.message);
+        res.status(500).json({ success: false, message: 'Server error removing member' });
     }
 });
 
@@ -544,6 +802,25 @@ app.get('/api/admin/registrations', authenticateAdmin, async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Server error fetching registration data'
+        });
+    }
+});
+
+// Get all teams with member details
+app.get('/api/admin/teams', authenticateAdmin, async (req, res) => {
+    try {
+        const teams = await Team.find()
+            .sort({ createdAt: -1 });
+
+        res.json({
+            success: true,
+            teams
+        });
+    } catch (error) {
+        console.error('❌ Admin teams error:', error.message);
+        res.status(500).json({
+            success: false,
+            message: 'Server error fetching teams data'
         });
     }
 });
