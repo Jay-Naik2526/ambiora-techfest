@@ -191,6 +191,14 @@ function populateEventDetails(event) {
         noteEl.closest('.event-section').style.display = 'block';
     }
 
+    // Update Rulebook & More Info (Drive Folder) section
+    const driveSectionEl = document.getElementById('event-drive-section');
+    const driveLinkEl = document.getElementById('event-drive-link');
+    if (driveSectionEl && driveLinkEl && event.driveFolder) {
+        driveLinkEl.href = event.driveFolder;
+        driveSectionEl.style.display = 'block';
+    }
+
     // Setup add to cart button
     const cartBtn = document.getElementById('add-to-cart-btn');
     if (cartBtn) {

@@ -12,6 +12,7 @@ export const eventsData = [
         teamSize: '2-6 members',
         venue: 'Library Area',
         prizes: { first: 12000, second: 8000, third: 5000 },
+        externalAllowed: true,
         includes: ['Enrolment Kit (I-Card)', 'Winner Certificates', 'Mid-night High Tea & Snacks'],
         judging: 'Industry/Academic Resource Person',
         note: 'External Teams: Breakfast, Lunch, and Dinner may be provided on request on a paid basis',
@@ -22,6 +23,7 @@ export const eventsData = [
         whatsapp: {
             group: 'https://chat.whatsapp.com/BQt7J1R7o1FJAuemBZWk9t?mode=gi_t'
         },
+        driveFolder: 'https://drive.google.com/drive/folders/19j6rPaCuuJZ8Pobod-5rwpC3my9nPD7f?usp=drive_link',
         image: '/assets/gd.jpeg'
     },
     {
@@ -64,6 +66,7 @@ export const eventsData = [
         whatsapp: {
             group: 'https://chat.whatsapp.com/DNMS8sco8uG4CmxBTeKfE2?mode=gi_t'
         },
+        driveFolder: 'https://drive.google.com/drive/folders/1QgMy_iYfsAsHohuCyj3580IUMbbumu0p?usp=drive_link',
         image: '/assets/cd.jpeg'
     },
     {
@@ -71,7 +74,7 @@ export const eventsData = [
         name: 'Treasure Hunt',
         host: 'Ambiora',
         category: 'competition',
-        description: 'Embark on an exciting treasure hunt across the campus! Solve puzzles, decode clues, and race against time to find the hidden treasure. Features a dedicated mobile app-based experience.',
+        description: 'Embark on an exciting treasure hunt across the campus! Solve puzzles, decode clues, and race against time to find the hidden treasure. Features a dedicated mobile app-based experience.<br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
         duration: '11:00 AM to 1:00 PM',
         date: 'Feb 27',
         price: 70,
@@ -81,6 +84,9 @@ export const eventsData = [
         includes: ['Winner Certificates'],
         note: 'Dedicated mobile app-based experience',
         highlights: ['₹3,000 Prize Pool', 'Mobile App', 'Adventure'],
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c'
+        },
         image: '/assets/t.jpeg'
     },
     {
@@ -229,7 +235,8 @@ export const eventsData = [
         host: 'Avinya Club',
         category: 'workshop',
         shortDescription: 'Workshop + Robo Competition',
-        description: 'Learn to build and program robots in a hands-on robotics workshop, then put your skills to test in an exciting Robo Competition! <strong>Robotics kit available for purchase (highly recommended for hands-on learning).</strong>',
+        externalAllowed: true,
+        description: 'Learn to build and program robots in a hands-on robotics workshop, then put your skills to test in an exciting Robo Competition! <strong>Robotics kit available for purchase (highly recommended for hands-on learning).</strong><br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
         duration: 'Workshop: Feb 28 (10AM-5PM) | Competition: Mar 1 (10AM onwards)',
         date: 'Feb 28 - March 1',
         price: 150,
@@ -247,14 +254,18 @@ export const eventsData = [
         highlights: ['Hands-on Workshop', 'Robo Competition', '₹3,000 Prize Pool'],
         image: '/assets/av.jpeg',
         isTeamEvent: true,
-        teamSizeLimit: 4
+        teamSizeLimit: 4,
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c'
+        },
+        driveFolder: 'https://drive.google.com/drive/folders/1JLUuM2kMps_cG9okEX-EujYI9ZciFruq?usp=drive_link'
     },
     {
         id: 'drone-o-mania',
         name: 'Drone O Mania',
         host: 'UAS NMIMS Club',
         category: 'competition',
-        description: 'Drone-O-Mania is a competitive obstacle-based drone racing event designed to test precision, control, and high-speed maneuverability. Participants must clear a series of aerial challenges within a defined time limit while minimizing penalties. The competition progresses through multiple rounds, culminating in a high-intensity final showdown.',
+        description: 'Drone-O-Mania is a competitive obstacle-based drone racing event designed to test precision, control, and high-speed maneuverability. Participants must clear a series of aerial challenges within a defined time limit while minimizing penalties. The competition progresses through multiple rounds, culminating in a high-intensity final showdown.<br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/GKcwxhTW6NRFY10XFTdjLr?mode=gi_t" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
         duration: '4:00 PM onwards',
         date: 'Feb 28',
         price: 600,
@@ -263,8 +274,13 @@ export const eventsData = [
         venue: 'Cricket Ground',
         prizes: { first: 13000, second: 10000, third: 7000 },
         highlights: ['₹30,000 Prize Pool', 'Obstacles Racing', 'Challenges'],
+        externalAllowed: true,
         isTeamEvent: true,
         teamSizeLimit: 2,
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/GKcwxhTW6NRFY10XFTdjLr?mode=gi_t'
+        },
+        driveFolder: 'https://drive.google.com/drive/folders/1vkXHrTQWYodMmIVAJFEGOvxqmr2GnFS7?usp=drive_link',
         image: '/assets/ua.jpeg'
     },
     {

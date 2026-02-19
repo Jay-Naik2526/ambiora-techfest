@@ -68,6 +68,12 @@ function initEventsPage() {
     const myEvents = cart.getMyEvents();
     generateEventCards(myEvents);
 
+    // Generate external participant event cards
+    generateExternalEventCards(myEvents);
+
+    // Initialize external section toggle
+    initExternalToggle();
+
     // Initialize filter buttons
     initFilterButtons();
 
@@ -79,7 +85,7 @@ function initEventsPage() {
  * Generate event cards from data
  */
 function generateEventCards(myEvents = []) {
-    const eventsGrid = document.querySelector('.events-grid');
+    const eventsGrid = document.getElementById('main-events-grid');
     if (!eventsGrid) return;
 
     // Clear existing cards
@@ -89,6 +95,36 @@ function generateEventCards(myEvents = []) {
     eventsData.forEach((event, index) => {
         const card = createEventCard(event, index, myEvents);
         eventsGrid.appendChild(card);
+    });
+}
+
+/**
+ * Generate external participant event cards
+ */
+function generateExternalEventCards(myEvents = []) {
+    const externalGrid = document.getElementById('external-events-grid');
+    if (!externalGrid) return;
+
+    externalGrid.innerHTML = '';
+
+    const externalEvents = eventsData.filter(e => e.externalAllowed);
+
+    externalEvents.forEach((event, index) => {
+        const card = createEventCard(event, index, myEvents);
+        // Add external badge overlay
+        card.classList.add('external-event-card');
+        const badge = document.createElement('div');
+        badge.className = 'external-event-badge';
+        badge.innerHTML = `
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            External Welcome
+        `;
+        card.appendChild(badge);
+        externalGrid.appendChild(card);
     });
 }
 
@@ -276,11 +312,54 @@ function initMobileMenu() {
 }
 
 /**
+ * Initialize External Participants section click toggle
+ */
+function initExternalToggle() {
+    const toggle = document.getElementById('external-toggle');
+    const panel = document.getElementById('external-events-panel');
+    const arrow = document.getElementById('external-arrow');
+
+    if (!toggle || !panel) return;
+
+    // Panel starts collapsed
+    panel.style.maxHeight = '0';
+    panel.style.overflow = 'hidden';
+    panel.style.transition = 'max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+
+    let isOpen = false;
+
+    function togglePanel() {
+        isOpen = !isOpen;
+        toggle.setAttribute('aria-expanded', isOpen);
+
+        if (isOpen) {
+            panel.style.maxHeight = panel.scrollHeight + 200 + 'px';
+            toggle.classList.add('active');
+            if (arrow) arrow.style.transform = 'rotate(180deg)';
+        } else {
+            panel.style.maxHeight = '0';
+            toggle.classList.remove('active');
+            if (arrow) arrow.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    toggle.addEventListener('click', togglePanel);
+
+    // Keyboard support
+    toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            togglePanel();
+        }
+    });
+}
+
+/**
  * Initialize filter buttons for events
  */
 function initFilterButtons() {
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const eventsGrid = document.querySelector('.events-grid');
+    const eventsGrid = document.getElementById('main-events-grid');
 
     if (!filterBtns.length || !eventsGrid) return;
 

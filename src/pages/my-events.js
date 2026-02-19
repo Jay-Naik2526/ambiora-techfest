@@ -150,6 +150,28 @@ async function createTicketCard(ticket) {
         </div>
     ` : '';
 
+    // Drive folder section
+    const driveFolderSection = (eventDetails && eventDetails.driveFolder) ? `
+        <div class="ticket-drive-section" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <strong style="color: rgba(255,255,255,0.85);">Rulebook & More Info</strong>
+            </p>
+            <a href="${eventDetails.driveFolder}" target="_blank" rel="noopener noreferrer"
+               style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.6rem 0.9rem; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.3); color: #00d4aa; text-decoration: none; border-radius: 8px; font-size: 0.78rem; font-weight: 500; transition: all 0.2s;">
+                <span style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Open Drive Folder
+                </span>
+                <span style="opacity: 0.7; font-size: 0.72rem;">Rulebook, Flyer & More →</span>
+            </a>
+        </div>
+    ` : '';
+
     article.innerHTML = `
         <div class="ticket-header">
             <div class="ticket-id-badge">${ticket.ticketId}</div>
@@ -188,6 +210,8 @@ async function createTicketCard(ticket) {
             </div>
             
             ${whatsappSection}
+            
+            ${driveFolderSection}
             
             <div class="ticket-qr">
                 <div class="qr-container" id="qr-${ticket.ticketId}"></div>

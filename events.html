@@ -125,6 +125,53 @@
         </div>
     </section>
 
+    <!-- External Participants Section -->
+    <section class="external-section section" id="external-participants">
+        <div class="container">
+
+            <!-- Clickable Toggle Banner -->
+            <div class="external-toggle" id="external-toggle" role="button" tabindex="0" aria-expanded="false"
+                aria-controls="external-events-panel">
+                <div class="external-toggle-left">
+                    <div class="external-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                            </path>
+                        </svg>
+                        Open to All Colleges
+                    </div>
+                    <h2 class="external-section-title">For External Participants</h2>
+                    <p class="external-section-desc">3 events open to students from <strong>outside NMIMS
+                            Shirpur</strong>. Click to explore!</p>
+                </div>
+                <div class="external-toggle-right">
+                    <div class="external-event-count">
+                        <span class="count-number">3</span>
+                        <span class="count-label">Events</span>
+                    </div>
+                    <div class="external-toggle-arrow" id="external-arrow">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expandable Cards Panel -->
+            <div class="external-events-panel" id="external-events-panel">
+                <div class="events-grid external-events-grid" id="external-events-grid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Events Grid -->
     <section class="events-section section">
         <div class="container">
@@ -135,7 +182,7 @@
                 <button class="filter-btn" data-filter="gaming">Gaming</button>
             </div>
 
-            <div class="events-grid">
+            <div class="events-grid" id="main-events-grid">
                 <!-- Event Card 1 -->
                 <article class="event-card" data-category="competition">
                     <div class="event-card-inner">
@@ -461,9 +508,12 @@
                     <div class="footer-column">
                         <h4 class="footer-heading">Connect</h4>
                         <ul class="footer-list">
-                            <li><a href="https://x.com/ambiora_tech?s=11" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
-                            <li><a href="https://www.instagram.com/ambioratechfest?igsh=Y244Mm1udno3ZWs5" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                            <li><a href="https://www.linkedin.com/company/ambiora-techfest/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                            <li><a href="https://x.com/ambiora_tech?s=11" target="_blank"
+                                    rel="noopener noreferrer">Twitter / X</a></li>
+                            <li><a href="https://www.instagram.com/ambioratechfest?igsh=Y244Mm1udno3ZWs5"
+                                    target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                            <li><a href="https://www.linkedin.com/company/ambiora-techfest/" target="_blank"
+                                    rel="noopener noreferrer">LinkedIn</a></li>
                             <li><a href="#" target="_blank" rel="noopener noreferrer">Discord</a></li>
                         </ul>
                     </div>
