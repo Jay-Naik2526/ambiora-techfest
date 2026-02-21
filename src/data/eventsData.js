@@ -224,7 +224,7 @@ export const eventsData = [
         date: 'Feb 27',
         price: 80,
         teamSize: '1-3 members',
-        venue: 'AIML Lab',
+        venue: 'CC 1',
         prizes: { first: 2500, second: 1500, third: 1000 },
         highlights: ['Startup Pitch', 'Mentorship', '₹5,000 Prize Pool'],
         image: '/assets/ad.jpeg'
@@ -242,7 +242,7 @@ export const eventsData = [
         price: 150,
         priceNote: 'Per Team',
         teamSize: '2-4 members',
-        venue: 'CC-I and Amphitheater',
+        venue: 'Student Lounge (Workshop) | Mini Football Ground (Competition)',
         prizes: { first: 2000, second: 1000 },
         kitPrice: 1300,
         kitOptional: true,
