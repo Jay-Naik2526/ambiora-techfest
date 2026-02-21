@@ -9,7 +9,7 @@ export const eventsData = [
         date: 'Feb 28',
         price: 600,
         priceNote: 'Per Team',
-        teamSize: '2-6 members',
+        teamSize: '3-5 members',
         venue: 'Library Area',
         prizes: { first: 12000, second: 8000, third: 5000 },
         externalAllowed: true,
