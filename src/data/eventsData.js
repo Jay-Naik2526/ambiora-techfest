@@ -94,7 +94,7 @@ export const eventsData = [
         name: 'Tower of Stability',
         host: 'Atrangi Club',
         category: 'competition',
-        description: 'Test your engineering skills by building the tallest and most stable tower using limited materials. Balance height with structural integrity! Required stationery will be provided.',
+        description: 'Test your engineering skills by building the tallest and most stable tower using limited materials. Balance height with structural integrity! Required stationery will be provided.<br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/GnrI2R8dlP16kdyJitiNSc" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
         duration: '2:00 PM to 4:00 PM',
         date: 'Feb 27',
         price: 70,
@@ -103,6 +103,9 @@ export const eventsData = [
         prizes: { first: 1000, second: 500 },
         includes: ['Required stationery provided'],
         highlights: ['Engineering', 'Creativity', 'Team Work'],
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/GnrI2R8dlP16kdyJitiNSc'
+        },
         image: '/assets/at.jpeg'
     },
     {
@@ -219,14 +222,17 @@ export const eventsData = [
         name: 'Pitch Your Own App',
         host: 'ADC Club',
         category: 'competition',
-        description: 'Present your innovative app idea to a panel of judges! Perfect your pitch, showcase your vision, and compete for exciting prizes. Industry experts will provide valuable feedback.',
+        description: 'Present your innovative app idea to a panel of judges! Perfect your pitch, showcase your vision, and compete for exciting prizes. Industry experts will provide valuable feedback.<br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/ISHe38qmfp6CI0eU9rsY5k?mode=gi_t" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
         duration: '1:30 PM to 5:00 PM',
         date: 'Feb 27',
         price: 80,
         teamSize: '1-3 members',
         venue: 'CC 1',
-        prizes: { first: 2500, second: 1500, third: 1000 },
-        highlights: ['Startup Pitch', 'Mentorship', '₹5,000 Prize Pool'],
+        prizes: { first: 5000, second: 3000, third: 2000 },
+        highlights: ['Startup Pitch', 'Mentorship', '₹10,000 Prize Pool'],
+        whatsapp: {
+            group: 'https://chat.whatsapp.com/ISHe38qmfp6CI0eU9rsY5k?mode=gi_t'
+        },
         image: '/assets/ad.jpeg'
     },
     {
