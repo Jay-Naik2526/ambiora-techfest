@@ -24,10 +24,22 @@
   <link rel="stylesheet" href="/src/components/SimpleGrid.css">
   <link rel="stylesheet" href="/src/components/VideoBackground.css">
   <link rel="stylesheet" href="/src/components/Cart.css">
+  <link rel="stylesheet" href="/src/styles/components/Banner.css">
   <link rel="stylesheet" href="/src/styles/pages/home.css">
 </head>
 
 <body>
+  <!-- Alert Banner Overlay for Date Change -->
+  <div class="alert-overlay" id="date-change-banner">
+    <div class="alert-box">
+      <div class="alert-content">
+        Important: Tech Fest dates moved to <strong class="text-accent">March 6-8, 2026</strong>
+      </div>
+      <button class="alert-close" onclick="document.getElementById('date-change-banner').style.display='none'"
+        aria-label="Close alert">&times;</button>
+    </div>
+  </div>
+
   <!-- Video Background (Home Page Only) -->
   <div class="video-background">
     <video autoplay loop muted playsinline>

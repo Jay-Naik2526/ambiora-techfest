@@ -14,25 +14,25 @@ function initTimeline() {
     if (!timelineContainer) return;
 
     // Group events by date
-    // Current dates in data: 'Feb 27', 'Feb 28', 'March 1', 'Feb 27 - March 1', 'Feb 28 - March 1'
+    // Current dates in data: 'Mar 6', 'Mar 7', 'March 1', 'Mar 6 - March 1', 'Mar 7 - March 1'
     // We need to categorize them.
     // Logic: 
-    // If exact match (e.g. 'Feb 27'), put in that day.
-    // If range starts with date (e.g. 'Feb 28 - March 1'), put in Feb 28?
+    // If exact match (e.g. 'Mar 6'), put in that day.
+    // If range starts with date (e.g. 'Mar 7 - March 1'), put in Mar 7?
     // User request had specific dates, so based on my earlier update, most events have specific single dates now
     // except 'robotics-robo-soccer' which spans days.
 
     // Hardcoded categories based on user plan
     const days = [
-        { id: 'day1', label: 'Day 1 - 27th February', dateMatch: 'Feb 27' },
-        { id: 'day2', label: 'Day 2 - 28th February', dateMatch: 'Feb 28' },
+        { id: 'day1', label: 'Day 1 - 27th February', dateMatch: 'Mar 6' },
+        { id: 'day2', label: 'Day 2 - 28th February', dateMatch: 'Mar 7' },
         { id: 'day3', label: 'Day 3 - 1st March', dateMatch: 'March 1' }
     ];
 
     // Helper to check if event belongs to day
     const getEventDay = (event) => {
-        if (event.date.includes('Feb 27')) return 'day1';
-        if (event.date.includes('Feb 28')) return 'day2';
+        if (event.date.includes('Mar 6')) return 'day1';
+        if (event.date.includes('Mar 7')) return 'day2';
         if (event.date.includes('March 1')) return 'day3';
         return 'day1'; // Default
     };

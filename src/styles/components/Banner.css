@@ -1,0 +1,109 @@
+/* src/styles/components/Banner.css */
+
+.alert-overlay {
+    position: fixed;
+    top: 100px;
+    /* Positions the banner firmly near the top rather than the center */
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    /* Let clicks pass through except on the box itself */
+}
+
+.alert-box {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-6);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 170, 0.4);
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.4);
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    max-width: 90%;
+    text-align: center;
+    animation: floatDown 0.6s ease 0.3s forwards, pulseGlow 2s infinite 0.9s;
+    opacity: 0;
+    /* starts hidden for animation */
+}
+
+.alert-box .text-accent {
+    color: var(--color-accent-primary);
+    font-weight: var(--font-semibold);
+}
+
+.alert-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    line-height: 1.4;
+}
+
+.alert-close {
+    background: none;
+    border: none;
+    color: var(--color-white-subtle);
+    font-size: var(--text-xl);
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    margin-left: var(--space-2);
+}
+
+.alert-close:hover {
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+@keyframes floatDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 212, 170, 0.3);
+        border-color: rgba(0, 212, 170, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(0, 212, 170, 0.8), inset 0 0 10px rgba(0, 212, 170, 0.2);
+        border-color: rgba(0, 212, 170, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(0, 212, 170, 0.3);
+        border-color: rgba(0, 212, 170, 0.3);
+    }
+}
+
+@media (max-width: 768px) {
+    .alert-box {
+        padding: var(--space-3) var(--space-5);
+        font-size: var(--text-sm);
+        border-radius: var(--radius-xl);
+        gap: var(--space-3);
+    }
+}
