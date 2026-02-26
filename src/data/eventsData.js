@@ -244,7 +244,7 @@ export const eventsData = [
         externalAllowed: true,
         description: 'Learn to build and program robots in a hands-on robotics workshop, then put your skills to test in an exciting Robo Competition! <strong>Robotics kit available for purchase (highly recommended for hands-on learning).</strong><br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
         duration: 'Workshop: Mar 7 (10AM-5PM) | Competition: Mar 8 (10AM onwards)',
-        date: 'Mar 7 - March 1',
+        date: 'Mar 7 & 8',
         price: 150,
         priceNote: 'Per Team',
         teamSize: '2-4 members',
