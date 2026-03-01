@@ -180,6 +180,7 @@ function getFilteredData() {
                         userName: reg.userName,
                         userEmail: reg.userEmail,
                         userPhone: reg.userPhone,
+                        userSapId: reg.userSapId || '',
                         orderId: reg.orderId,
                         paymentStatus: reg.paymentStatus,
                         date: reg.createdAt
@@ -255,6 +256,7 @@ function renderCurrentView() {
                         <thead>
                             <tr>
                                 <th>User</th>
+                                <th>SAP ID</th>
                                 <th>Contact</th>
                                 <th>Date</th>
                                 <th>Amount</th>
@@ -266,6 +268,7 @@ function renderCurrentView() {
                             ${items.map(item => `
                                 <tr>
                                     <td><strong>${item.userName}</strong></td>
+                                    <td><span class="sap-id">${item.userSapId || '—'}</span></td>
                                     <td>
                                         <div style="font-size: 11px;">${item.userEmail}</div>
                                         <div style="font-size: 11px; opacity: 0.6;">${item.userPhone}</div>
@@ -383,11 +386,12 @@ function exportToCSV() {
 
     if (currentView === 'registrations') {
         filename = `ambiora_registrations_${currentEventFilter}_${new Date().toLocaleDateString()}.csv`;
-        rows = [['Date', 'User Name', 'Email', 'Phone', 'Event Name', 'Category', 'Price', 'Order ID', 'Status']];
+        rows = [['Date', 'User Name', 'SAP ID', 'Email', 'Phone', 'Event Name', 'Category', 'Price', 'Order ID', 'Status']];
         data.forEach(item => {
             rows.push([
                 new Date(item.date).toLocaleString(),
                 item.userName,
+                item.userSapId || '',
                 item.userEmail,
                 item.userPhone,
                 item.eventName,
@@ -458,6 +462,7 @@ function exportToExcel() {
         excelData = data.map(item => ({
             'Registration Date': new Date(item.date).toLocaleString(),
             'User Name': item.userName,
+            'SAP ID': item.userSapId || '',
             'Email': item.userEmail,
             'Phone': item.userPhone,
             'Event Name': item.eventName,

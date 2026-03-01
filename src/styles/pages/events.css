@@ -585,6 +585,22 @@
     height: 14px;
 }
 
+/* Registration Closed state */
+.event-card-cart-btn.reg-closed-btn {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    cursor: not-allowed;
+    pointer-events: none;
+    font-size: 10px;
+    gap: 5px;
+}
+
+.event-card-cart-btn.reg-closed-btn:hover {
+    transform: none;
+    box-shadow: none;
+}
+
 /* Card entrance animation */
 @keyframes cardEntrance {
     to {

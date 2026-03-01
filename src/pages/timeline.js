@@ -24,16 +24,16 @@ function initTimeline() {
 
     // Hardcoded categories based on user plan
     const days = [
-        { id: 'day1', label: 'Day 1 - 27th February', dateMatch: 'Mar 6' },
-        { id: 'day2', label: 'Day 2 - 28th February', dateMatch: 'Mar 7' },
-        { id: 'day3', label: 'Day 3 - 1st March', dateMatch: 'March 1' }
+        { id: 'day1', label: 'Day 1 - 6th March', dateMatch: 'Mar 6' },
+        { id: 'day2', label: 'Day 2 - 7th March', dateMatch: 'Mar 7' },
+        { id: 'day3', label: 'Day 3 - 8th March', dateMatch: 'Mar 8' }
     ];
 
     // Helper to check if event belongs to day
     const getEventDay = (event) => {
         if (event.date.includes('Mar 6')) return 'day1';
         if (event.date.includes('Mar 7')) return 'day2';
-        if (event.date.includes('March 1')) return 'day3';
+        if (event.date.includes('Mar 8')) return 'day3';
         return 'day1'; // Default
     };
 

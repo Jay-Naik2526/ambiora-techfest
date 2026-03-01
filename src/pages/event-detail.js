@@ -202,6 +202,20 @@ function populateEventDetails(event) {
     // Setup add to cart button
     const cartBtn = document.getElementById('add-to-cart-btn');
     if (cartBtn) {
+        // If registration is closed, disable the button and show a message
+        if (event.registrationClosed) {
+            cartBtn.disabled = true;
+            cartBtn.textContent = event.registrationClosedMessage || 'Registrations Closed';
+            cartBtn.style.cssText = 'background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.4); cursor: not-allowed; opacity: 0.85; pointer-events: none;';
+
+            // Insert a visible notice banner above the button
+            const notice = document.createElement('div');
+            notice.style.cssText = 'display:flex; align-items:center; gap:10px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:10px; padding:12px 16px; margin-bottom:14px; color:#ef4444; font-size:14px; font-weight:600;';
+            notice.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg> Registrations for this event are <strong style="margin-left:4px;">now closed</strong>. Seats are full!`;
+            cartBtn.parentElement.insertBefore(notice, cartBtn);
+            return; // Skip adding event listener
+        }
+
         cartBtn.addEventListener('click', () => {
             const cart = initCart();
 

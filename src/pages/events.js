@@ -144,13 +144,23 @@ function createEventCard(event, index, myEvents = []) {
 
     // Check if purchased
     const isPurchased = myEvents.some(e => e.eventId === event.id);
+    const isClosed = event.registrationClosed === true;
 
-    // Button state
-    const btnText = isPurchased ? 'Registered' : 'Add to Cart';
-    const btnClass = isPurchased ? 'event-card-cart-btn disabled' : 'event-card-cart-btn';
-    const btnIcon = isPurchased ?
-        `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>` :
-        `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`;
+    // Button state — priority: closed > purchased > normal
+    let btnText, btnClass, btnIcon;
+    if (isClosed) {
+        btnText = 'Registrations Closed';
+        btnClass = 'event-card-cart-btn disabled reg-closed-btn';
+        btnIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>`;
+    } else if (isPurchased) {
+        btnText = 'Registered';
+        btnClass = 'event-card-cart-btn disabled';
+        btnIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+    } else {
+        btnText = 'Add to Cart';
+        btnClass = 'event-card-cart-btn';
+        btnIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`;
+    }
     const detailsBtnHref = isPurchased ? '/my-events.html' : `/event-detail.html?id=${event.id}`;
     const detailsBtnText = isPurchased ? 'View Ticket' : 'View Details';
 
@@ -242,6 +252,7 @@ function createEventCard(event, index, myEvents = []) {
     cartBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        if (event.registrationClosed) return; // Hard block for closed events
         addToCart(event);
     });
 

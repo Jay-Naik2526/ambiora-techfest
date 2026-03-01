@@ -18,6 +18,10 @@ const eventRegistrationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userSapId: {
+        type: String,
+        default: ''
+    },
     events: [{
         eventId: {
             type: String,

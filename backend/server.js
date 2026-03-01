@@ -519,6 +519,7 @@ app.post('/api/registrations', authenticateToken, async (req, res) => {
             userName: user.name,
             userEmail: user.email,
             userPhone: user.phone,
+            userSapId: user.sapId || '',
             events,
             totalAmount,
             orderId,
@@ -787,15 +788,33 @@ const authenticateAdmin = (req, res, next) => {
     });
 };
 
-// Get all registrations with user details
+// Get all registrations with user details (including SAP ID from User collection)
 app.get('/api/admin/registrations', authenticateAdmin, async (req, res) => {
     try {
         const registrations = await EventRegistration.find()
             .sort({ createdAt: -1 });
 
+        // Collect all unique userIds from registrations
+        const userIds = [...new Set(registrations.map(r => r.userId.toString()))];
+
+        // Fetch all matching users and build a sapId lookup map
+        const users = await User.find({ _id: { $in: userIds } }).select('_id sapId');
+        const sapIdMap = {};
+        users.forEach(u => {
+            sapIdMap[u._id.toString()] = u.sapId || '';
+        });
+
+        // Merge sapId into each registration object
+        const enrichedRegistrations = registrations.map(reg => {
+            const obj = reg.toObject();
+            // Prefer live sapId from User document; fall back to stored userSapId
+            obj.userSapId = sapIdMap[reg.userId.toString()] || obj.userSapId || '';
+            return obj;
+        });
+
         res.json({
             success: true,
-            registrations
+            registrations: enrichedRegistrations
         });
     } catch (error) {
         console.error('❌ Admin registrations error:', error.message);

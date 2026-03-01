@@ -1,5 +1,5 @@
 /* ============================================
-   AMBIORA - ADMIN PANEL STYLES
+   AMBIORA - ADMIN PANEL STYLES (Fully Responsive)
    ============================================ */
 
 @import '../variables.css';
@@ -21,6 +21,7 @@
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
     background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
 }
 
 .login-card {
@@ -60,6 +61,7 @@
     color: var(--color-white);
     font-size: var(--text-base);
     text-align: center;
+    box-sizing: border-box;
 }
 
 .login-input:focus {
@@ -72,16 +74,16 @@
 .admin-tabs {
     display: flex;
     gap: var(--space-2);
-    margin-bottom: var(--space-10);
     padding: var(--space-1);
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-lg);
     width: fit-content;
+    flex-wrap: wrap;
 }
 
 .tab-btn {
-    padding: var(--space-3) var(--space-6);
+    padding: var(--space-2) var(--space-4);
     background: transparent;
     border: none;
     border-radius: var(--radius-md);
@@ -90,6 +92,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .tab-btn:hover {
@@ -107,7 +110,6 @@
 /* ─── DASHBOARD LAYOUT ────────────────────────────── */
 .admin-dashboard {
     display: none;
-    /* Hidden until auth */
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--space-6);
@@ -117,16 +119,66 @@
     display: block;
 }
 
+/* ─── HEADER ────────────────────────────────────── */
 .admin-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--space-12);
+    align-items: flex-start;
+    margin-bottom: var(--space-8);
+    gap: var(--space-4);
+    flex-wrap: wrap;
 }
 
 .admin-actions {
     display: flex;
-    gap: var(--space-4);
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+/* ─── CONTROLS BAR ───────────────────────────────── */
+.admin-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.view-toggles {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.view-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: var(--text-sm);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+#event-filter {
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 200px;
+    width: 100%;
 }
 
 /* ─── STATS GRID ─────────────────────────────────── */
@@ -168,6 +220,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+    gap: var(--space-2);
 }
 
 .section-title {
@@ -182,6 +236,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 /* ─── DATA TABLE ─────────────────────────────────── */
@@ -189,32 +244,42 @@
     background: rgba(10, 10, 12, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow-x: auto;
+    /* key: horizontal scroll on small screens */
+    -webkit-overflow-scrolling: touch;
 }
 
 .admin-table {
     width: 100%;
+    min-width: 600px;
+    /* ensures table doesn't collapse too small */
     border-collapse: collapse;
     font-size: var(--text-sm);
 }
 
 .admin-table th {
     text-align: left;
-    padding: var(--space-4) var(--space-6);
+    padding: var(--space-4) var(--space-5);
     background: rgba(255, 255, 255, 0.03);
     color: var(--color-white-muted);
     font-weight: var(--font-medium);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: nowrap;
 }
 
 .admin-table td {
-    padding: var(--space-4) var(--space-6);
+    padding: var(--space-3) var(--space-5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     color: var(--color-white-subtle);
+    vertical-align: top;
 }
 
 .admin-table tr:last-child td {
     border-bottom: none;
+}
+
+.admin-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .status-badge {
@@ -223,6 +288,7 @@
     font-size: 10px;
     text-transform: uppercase;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .status-success {
@@ -235,12 +301,22 @@
     color: #ffc107;
 }
 
-/* Export Button */
+/* ─── SAP ID BADGE ──────────────────────────────── */
+.sap-id {
+    font-family: monospace;
+    font-size: 10px;
+    color: #a78bfa;
+    opacity: 0.85;
+    display: block;
+    margin-top: 2px;
+}
+
+/* ─── EXPORT BUTTON ─────────────────────────────── */
 .btn-export {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
+    padding: 10px 16px;
     background: var(--color-white);
     color: var(--color-black);
     border: none;
@@ -249,6 +325,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .btn-export:hover {
@@ -256,20 +333,123 @@
     transform: translateY(-2px);
 }
 
-/* Responsive */
+/* ─── RESPONSIVE BREAKPOINTS ─────────────────────── */
+
+/* Tablet */
 @media (max-width: 1024px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
 
-@media (max-width: 640px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .admin-table th:nth-child(4),
-    .admin-table td:nth-child(4) {
-        display: none;
+    .admin-actions {
+        width: 100%;
+    }
+}
+
+/* Large Mobile */
+@media (max-width: 768px) {
+    .admin-page {
+        padding-top: 80px;
+    }
+
+    .admin-dashboard {
+        padding: 0 var(--space-4);
+    }
+
+    .admin-controls {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .view-toggles {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .view-btn {
+        flex: 1;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .filters {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    #event-filter {
+        max-width: 100%;
+    }
+
+    .admin-tabs {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .tab-btn {
+        font-size: 12px;
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .admin-actions {
+        gap: var(--space-2);
+    }
+
+    .btn-export {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .btn-primary {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-3);
+    }
+
+    .stat-card {
+        padding: var(--space-4);
+    }
+
+    .stat-value {
+        font-size: var(--text-2xl);
+    }
+
+    .section-title {
+        font-size: var(--text-lg);
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+    }
+
+    .admin-table {
+        font-size: 12px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .login-card {
+        padding: var(--space-6);
+    }
+
+    .admin-header h1 {
+        font-size: var(--text-2xl);
     }
 }
