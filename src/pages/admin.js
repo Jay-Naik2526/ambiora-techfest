@@ -9,6 +9,7 @@ let adminToken = localStorage.getItem('admin_token');
 let currentView = 'registrations'; // 'registrations' or 'teams'
 let currentCategory = 'all';
 let currentEventFilter = 'all';
+let currentSearch = '';
 let allRegistrations = [];
 let allTeams = [];
 
@@ -118,6 +119,26 @@ function setupControls() {
         });
     });
 
+    // Search
+    const searchInput = document.getElementById('admin-search');
+    const searchClear = document.getElementById('admin-search-clear');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.trim().toLowerCase();
+            searchClear.style.display = currentSearch ? 'flex' : 'none';
+            renderCurrentView();
+        });
+    }
+    if (searchClear) {
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            currentSearch = '';
+            searchClear.style.display = 'none';
+            searchInput.focus();
+            renderCurrentView();
+        });
+    }
+
     // Exports
     document.getElementById('export-csv').onclick = () => exportToCSV();
     document.getElementById('export-excel').onclick = () => exportToExcel();
@@ -151,6 +172,7 @@ async function fetchAndRenderData() {
             return;
         }
 
+        computePaymentSummary([]); // init cards with 0 until renderCurrentView fills them
         renderCurrentView();
 
     } catch (error) {
@@ -172,8 +194,15 @@ function getFilteredData() {
                 const catMatch = currentCategory === 'all' || (event.eventCategory && event.eventCategory.toLowerCase() === currentCategory.toLowerCase());
                 // Filter by Event ID
                 const eventMatch = currentEventFilter === 'all' || event.eventId === currentEventFilter;
+                // Filter by Search (name, email, SAP ID)
+                const q = currentSearch;
+                const searchMatch = !q ||
+                    (reg.userName || '').toLowerCase().includes(q) ||
+                    (reg.userEmail || '').toLowerCase().includes(q) ||
+                    (reg.userSapId || '').toLowerCase().includes(q) ||
+                    (reg.userPhone || '').toLowerCase().includes(q);
 
-                if (catMatch && eventMatch) {
+                if (catMatch && eventMatch && searchMatch) {
                     data.push({
                         ...event,
                         userId: reg.userId,
@@ -191,18 +220,84 @@ function getFilteredData() {
     } else if (currentView === 'teams') {
         data = allTeams.filter(team => {
             const event = eventsData.find(e => e.id === team.eventId);
-            const category = event ? event.category : 'other'; // Assuming eventsData has category
+            const category = event ? event.category : 'other';
 
-            // Filter by Category
             const catMatch = currentCategory === 'all' || (category && category.toLowerCase().includes(currentCategory.toLowerCase()));
-            // Filter by Event ID
             const eventMatch = currentEventFilter === 'all' || team.eventId === currentEventFilter;
+            // Search by team name or leader/member name
+            const q = currentSearch;
+            const leader = team.members ? team.members.find(m => m.userId === team.leaderId) : null;
+            const searchMatch = !q ||
+                (team.name || '').toLowerCase().includes(q) ||
+                (leader && (leader.name || '').toLowerCase().includes(q)) ||
+                (leader && (leader.sapId || '').toLowerCase().includes(q)) ||
+                (team.members || []).some(m => (m.name || '').toLowerCase().includes(q) || (m.sapId || '').toLowerCase().includes(q));
 
-            return catMatch && eventMatch;
+            return catMatch && eventMatch && searchMatch;
         });
     }
 
     return data;
+}
+
+function computePaymentSummary(filteredData) {
+    // Revenue & pending computed from currently visible (filtered) flat data
+    const isFiltered = currentEventFilter !== 'all' || currentCategory !== 'all' || currentSearch !== '';
+
+    let revenueCollected = 0;
+    let pendingCount = 0;
+    let pendingAmount = 0;
+    const seenPendingOrders = new Set();
+
+    if (currentView === 'registrations' && filteredData) {
+        filteredData.forEach(item => {
+            if (item.paymentStatus === 'success') {
+                revenueCollected += item.eventPrice || 0;
+            } else if (item.paymentStatus === 'pending') {
+                // Count unique orders not individual event rows
+                if (!seenPendingOrders.has(item.orderId)) {
+                    seenPendingOrders.add(item.orderId);
+                    pendingCount++;
+                }
+                pendingAmount += item.eventPrice || 0;
+            }
+        });
+    } else if (currentView === 'teams') {
+        // Teams don't have direct revenue — show global totals instead
+        allRegistrations.forEach(reg => {
+            if (reg.paymentStatus === 'success') revenueCollected += reg.totalAmount || 0;
+            else if (reg.paymentStatus === 'pending') {
+                pendingCount++;
+                pendingAmount += reg.totalAmount || 0;
+            }
+        });
+    }
+
+    // Context sublabel
+    let revSubLabel = '';
+    if (currentView === 'registrations') {
+        if (currentEventFilter !== 'all') {
+            const ev = eventsData.find(e => e.id === currentEventFilter);
+            revSubLabel = ev ? `For: ${ev.name}` : 'Filtered revenue';
+        } else if (isFiltered) {
+            revSubLabel = 'Filtered revenue';
+        } else {
+            revSubLabel = 'All events combined';
+        }
+    } else {
+        revSubLabel = 'Based on all registrations';
+    }
+
+    // Update stat cards
+    const revenueEl = document.getElementById('stat-revenue');
+    const revenueSubEl = document.getElementById('stat-revenue-sub');
+    const pendingEl = document.getElementById('stat-pending');
+    const pendingSubEl = document.getElementById('stat-pending-sub');
+
+    if (revenueEl) revenueEl.textContent = `₹${revenueCollected.toLocaleString('en-IN')}`;
+    if (revenueSubEl) revenueSubEl.textContent = revSubLabel;
+    if (pendingEl) pendingEl.textContent = pendingCount;
+    if (pendingSubEl) pendingSubEl.textContent = pendingCount > 0 ? `₹${pendingAmount.toLocaleString('en-IN')} at risk` : 'All clear ✓';
 }
 
 function renderCurrentView() {
@@ -215,6 +310,7 @@ function renderCurrentView() {
     const filteredData = getFilteredData();
 
     statCount.textContent = filteredData.length;
+    computePaymentSummary(filteredData);
 
     sectionsContainer.innerHTML = '';
 

@@ -181,6 +181,63 @@
     width: 100%;
 }
 
+/* ─── SEARCH BAR ────────────────────────────────── */
+.admin-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 10px 16px;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-search-bar:focus-within {
+    border-color: rgba(0, 212, 170, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.08);
+}
+
+.admin-search-bar svg {
+    color: var(--color-white-muted);
+    flex-shrink: 0;
+}
+
+.admin-search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-family: var(--font-body);
+}
+
+.admin-search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.search-clear-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    color: var(--color-white-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+}
+
 /* ─── STATS GRID ─────────────────────────────────── */
 .stats-grid {
     display: grid;
@@ -196,6 +253,16 @@
     border-radius: var(--radius-lg);
 }
 
+.stat-card-success {
+    background: rgba(0, 212, 170, 0.05);
+    border-color: rgba(0, 212, 170, 0.2);
+}
+
+.stat-card-pending {
+    background: rgba(255, 193, 7, 0.05);
+    border-color: rgba(255, 193, 7, 0.2);
+}
+
 .stat-label {
     font-size: var(--text-xs);
     color: var(--color-white-muted);
@@ -208,6 +275,24 @@
     font-family: var(--font-display);
     font-size: var(--text-3xl);
     color: var(--color-accent-primary);
+}
+
+.stat-card-success .stat-value {
+    color: #00d4aa;
+}
+
+.stat-card-pending .stat-value {
+    color: #ffc107;
+}
+
+.stat-sublabel {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 4px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* ─── CATEGORY SECTIONS ───────────────────────────── */
