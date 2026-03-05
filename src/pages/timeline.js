@@ -110,7 +110,7 @@ function initTimeline() {
                             <div class="timeline-host">
                                 <span>by AMBIORA X ${event.host}</span>
                             </div>
-                            <p class="timeline-desc">${event.shortDescription || event.description}</p>
+                            <p class="timeline-desc">${(event.shortDescription || event.description || '').replace(/<br>\s*<br>\s*<strong>Join WhatsApp Group:.*?<\/a>/gi, '')}</p>
                             <div class="timeline-arrow">
                                 View Details <span>→</span>
                             </div>

@@ -78,7 +78,7 @@ export const eventsData = [
         category: 'competition',
         registrationClosed: true,
         registrationClosedMessage: 'Registrations Closed — Seats are Full!',
-        description: 'Embark on an exciting treasure hunt across the campus! Solve puzzles, decode clues, and race against time to find the hidden treasure. Features a dedicated mobile app-based experience.<br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
+        description: 'Embark on an exciting treasure hunt across the campus! Solve puzzles, decode clues, and race against time to find the hidden treasure. Features a dedicated mobile app-based experience.',
         duration: '11:00 AM to 1:00 PM',
         date: 'Mar 6',
         price: 70,
@@ -88,9 +88,6 @@ export const eventsData = [
         includes: ['Winner Certificates'],
         note: 'Dedicated mobile app-based experience',
         highlights: ['₹3,000 Prize Pool', 'Mobile App', 'Adventure'],
-        whatsapp: {
-            group: 'https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c'
-        },
         image: '/assets/t.jpeg'
     },
     {
@@ -248,7 +245,7 @@ export const eventsData = [
         category: 'workshop',
         shortDescription: 'Workshop + Robo Competition',
         externalAllowed: true,
-        description: 'Learn to build and program robots in a hands-on robotics workshop, then put your skills to test in an exciting Robo Competition! <strong>Robotics kit available for purchase (highly recommended for hands-on learning).</strong><br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
+        description: 'Learn to build and program robots in a hands-on robotics workshop, then put your skills to test in an exciting Robo Competition! <strong>Robotics kit available for purchase (highly recommended for hands-on learning).</strong>',
         duration: 'Workshop: Mar 7 (10AM-5PM) | Competition: Mar 8 (10AM onwards)',
         date: 'Mar 7 & 8',
         price: 150,
@@ -267,9 +264,6 @@ export const eventsData = [
         image: '/assets/av.jpeg',
         isTeamEvent: true,
         teamSizeLimit: 4,
-        whatsapp: {
-            group: 'https://chat.whatsapp.com/IKntzQlKXQLLiTQ0tcQfT8?mode=gi_c'
-        },
         driveFolder: 'https://drive.google.com/drive/folders/1JLUuM2kMps_cG9okEX-EujYI9ZciFruq?usp=drive_link'
     },
     {
