@@ -289,8 +289,6 @@ export const eventsData = [
         name: 'Drone O Mania',
         host: 'UAS NMIMS Club',
         category: 'competition',
-        registrationClosed: true,
-        registrationClosedMessage: 'Registrations Closed — Seats are Full!',
         description: 'Drone-O-Mania is a competitive obstacle-based drone racing event designed to test precision, control, and high-speed maneuverability. Participants must clear a series of aerial challenges within a defined time limit while minimizing penalties. The competition progresses through multiple rounds, culminating in a high-intensity final showdown.<br><br><strong>Join WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/GKcwxhTW6NRFY10XFTdjLr?mode=gi_t" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Click Here to Join</a>',
         duration: '4:00 PM onwards',
         date: 'Mar 7',
